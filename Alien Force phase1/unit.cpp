@@ -19,3 +19,9 @@ int unit::getID()
 {
     return ID;
 }
+
+ostream& operator<<(ostream out, unit* u) {
+	if (u) {
+		out << u->getID();
+	}
+}
