@@ -9,10 +9,11 @@ class Game
 {
 private:
 	LinkedQueue <unit*> KilledList;
-	AlienArmy aliens_army;
+	AlienArmy alien_army;
 	EarthArmy earth_army;
 	randGen RandGen;
 public:
-
+	EarthArmy* getEarthArmy();
+	AlienArmy* getAlienArmy();
 };
 
