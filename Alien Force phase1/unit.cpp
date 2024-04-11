@@ -1,8 +1,7 @@
 #include "unit.h"
 
-unit::unit(int id, string t, int tj, int h, int p, int ac)
+unit::unit(string t, int tj, int h, int p, int ac)
 {
-	ID = id;
 	type = t;
 	Tj = tj;
 	health = h;
@@ -18,6 +17,11 @@ string unit::getType()
 int unit::getID()
 {
     return ID;
+}
+
+void unit::setID(int id)
+{
+	ID = id;
 }
 
 ostream& operator<<(ostream out, unit* u) {

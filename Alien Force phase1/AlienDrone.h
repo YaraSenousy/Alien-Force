@@ -3,6 +3,6 @@
 class AlienDrone : unit
 {
 public:
-	AlienDrone(int id, int tj, int h, int p, int ac) : unit(id, "AD", tj, h, p, ac) {}
+	AlienDrone(int tj, int h, int p, int ac) : unit("AD", tj, h, p, ac) {}
 };
 

@@ -3,6 +3,6 @@
 class EarthTank : unit
 {
 public:
-	EarthTank(int id, int tj, int h, int p, int ac) : unit(id, "ET", tj, h, p, ac) {}
+	EarthTank(int tj, int h, int p, int ac) : unit("ET", tj, h, p, ac) {}
 };
 
