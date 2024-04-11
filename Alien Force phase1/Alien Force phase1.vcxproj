@@ -137,12 +137,14 @@
     <ClInclude Include="EarthSolider.h" />
     <ClInclude Include="EarthTank.h" />
     <ClInclude Include="Dequeue.h" />
+    <ClInclude Include="Game.h" />
     <ClInclude Include="LinkedQueue.h" />
     <ClInclude Include="MonsterArray.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="priNode.h" />
     <ClInclude Include="priQueue.h" />
     <ClInclude Include="QueueADT.h" />
+    <ClInclude Include="randGen.h" />
     <ClInclude Include="StackADT.h" />
     <ClInclude Include="unit.h" />
   </ItemGroup>
@@ -155,7 +157,9 @@
     <ClCompile Include="EarthGunnery.cpp" />
     <ClCompile Include="EarthSolider.cpp" />
     <ClCompile Include="EarthTank.cpp" />
+    <ClCompile Include="Game.cpp" />
     <ClCompile Include="MonsterArray.cpp" />
+    <ClCompile Include="randGen.cpp" />
     <ClCompile Include="unit.cpp" />
   </ItemGroup>
   <ItemGroup>
