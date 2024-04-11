@@ -12,6 +12,7 @@ void AlienArmy::addUnit(unit* u) {
 		//AM.
 	}
 	else if (u->getType() == "AD") {
-		AD.enqueue(static_cast <AlienDrone*> (u));
+		AlienDrone* drone = static_cast<AlienDrone*> (u);
+		AD.enqueue(drone);
 	}
 }

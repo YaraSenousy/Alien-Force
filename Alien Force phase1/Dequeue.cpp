@@ -11,7 +11,7 @@ Dequeue::Dequeue()
 
 //checks if dequeue is empty 
 //returns 1 if empty, 0 otherwise
-bool Dequeue::isEmpty()
+bool Dequeue::isEmpty() const
 {
 	return (frontPtr==nullptr);
 }
@@ -19,9 +19,9 @@ bool Dequeue::isEmpty()
 //standard enqueue from the back of queue
 //returns 0 only if new drone cannot be allocated 
 //1 otherwise
-bool Dequeue::enqueue(AlienDrone*& newDrone)
+bool Dequeue::enqueue(const AlienDrone*& newDrone)
 {
-	Node<AlienDrone*>* newdrone = new Node<AlienDrone*>(newDrone);
+	Node<AlienDrone*>* newdrone = new Node<AlienDrone*>(const_cast<AlienDrone*>(newDrone));
 	if (!newdrone)
 		return false;
 	if (isEmpty())
@@ -89,15 +89,19 @@ bool Dequeue::dequeueBack(AlienDrone*& backDrone)
 }
 
 //peeks at first drone with out removing it
-bool Dequeue::peek(AlienDrone*& frontDrone)
+bool Dequeue::peek(AlienDrone*& frontDrone) const
 {
+	if (isEmpty) return false;
 	frontDrone = frontPtr->getItem();
+	return true;
 }
 
 //peeks at last drone with out removing it
 bool Dequeue::peekBack(AlienDrone*& backDrone)
 {
+	if (isEmpty) return false;
 	backDrone = backPtr->getItem();
+	return true;
 }
 
 //prints in standard queue order
