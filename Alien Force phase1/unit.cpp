@@ -24,6 +24,16 @@ void unit::setID(int id)
 	ID = id;
 }
 
+void unit::sethealth(int h)
+{
+	health = h;
+}
+
+void unit::setTimeDead(int td)
+{
+	Td = td;
+}
+
 ostream& operator<<(ostream out, unit* u) {
 	if (u) {
 		out << u->getID();
