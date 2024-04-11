@@ -14,9 +14,10 @@ private:
 	int power;
 	int attack_cap;
 public:
-	unit(int id, string t, int tj, int h, int p, int ac);
+	unit(string t, int tj, int h, int p, int ac);
 	string getType();
 	int getID();
+	void setID(int id);
 };
 
 
