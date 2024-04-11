@@ -4,6 +4,7 @@
 #include "AlienSolider.h"
 #include "LinkedQueue.h"
 #include "Dequeue.h"
+#include "MonsterArray.h"
 
 class AlienArmy
 {
@@ -11,7 +12,7 @@ private:
 	int AlienCounter;
 	LinkedQueue<AlienSolider*> AS;
 	Dequeue AD;
-	//arrayofpointers <AlienMonster*> AM;
+	MonsterArray AM;
 public:
 	AlienArmy() {
 		AlienCounter = 2000;

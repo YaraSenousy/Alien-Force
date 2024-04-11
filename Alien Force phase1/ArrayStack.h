@@ -71,7 +71,7 @@ public:
 		for (int i{}; i < count; i++) {
 			cout << items[i] << ",";
 		}
-		cout << "]" << stdl;
+		cout << "]" << endl;
 	}
 
 }; // end ArrayStack

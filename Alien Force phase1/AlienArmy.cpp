@@ -9,7 +9,7 @@ void AlienArmy::addUnit(unit* u) {
 		AS.enqueue(static_cast<AlienSolider*> (u));
 	}
 	else if (u->getType() == "AM") {
-		//AM.
+		AM.push(static_cast<AlienMonster*>(u));
 	}
 	else if (u->getType() == "AD") {
 		AlienDrone* drone = static_cast<AlienDrone*> (u);
