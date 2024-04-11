@@ -138,6 +138,7 @@
     <ClInclude Include="EarthTank.h" />
     <ClInclude Include="Dequeue.h" />
     <ClInclude Include="LinkedQueue.h" />
+    <ClInclude Include="MonsterArray.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="priNode.h" />
     <ClInclude Include="priQueue.h" />
@@ -154,6 +155,7 @@
     <ClCompile Include="EarthGunnery.cpp" />
     <ClCompile Include="EarthSolider.cpp" />
     <ClCompile Include="EarthTank.cpp" />
+    <ClCompile Include="MonsterArray.cpp" />
     <ClCompile Include="unit.cpp" />
   </ItemGroup>
   <ItemGroup>

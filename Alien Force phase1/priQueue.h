@@ -77,7 +77,7 @@ public:
             cout << ptr->getItem() << ",";
             ptr = ptr->getNext();
         }
-        cout << "]";
+        cout << "]"<<endl;
     }
 };
 
