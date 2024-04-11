@@ -127,17 +127,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="AlienArmy.h" />
     <ClInclude Include="AlienDrone.h" />
     <ClInclude Include="AlienMonster.h" />
     <ClInclude Include="AlienSolider.h" />
     <ClInclude Include="ArrayStack.h" />
-
+    <ClInclude Include="EarthArmy.h" />
     <ClInclude Include="EarthGunnery.h" />
     <ClInclude Include="EarthSolider.h" />
     <ClInclude Include="EarthTank.h" />
-
     <ClInclude Include="Dequeue.h" />
-
     <ClInclude Include="LinkedQueue.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="priNode.h" />
@@ -147,8 +146,11 @@
     <ClInclude Include="unit.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AlienArmy.cpp" />
+    <ClCompile Include="AlienDrone.cpp" />
     <ClCompile Include="AlienMonster.cpp" />
     <ClCompile Include="AlienSolider.cpp" />
+    <ClCompile Include="EarthArmy.cpp" />
     <ClCompile Include="EarthGunnery.cpp" />
     <ClCompile Include="EarthSolider.cpp" />
     <ClCompile Include="EarthTank.cpp" />
