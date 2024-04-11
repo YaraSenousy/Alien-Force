@@ -75,14 +75,25 @@ bool Dequeue::dequeueBack(AlienDrone*& backDrone)
 {
 	if (isEmpty())
 		return false;
+
+	Node<AlienDrone*>* prevPtr = frontPtr;
 	Node<AlienDrone*>* dronetodelete = backPtr;
 	backDrone = backPtr->getItem();
-	backPtr = backPtr->getNext();
-
-	if (dronetodelete == frontPtr)
+	//if last node is only node
+	if (prevPtr == dronetodelete) {
 		frontPtr = nullptr;
+		backPtr = nullptr;
+		delete dronetodelete;
+		count--;
+		return true;
+	}
 
-	dronetodelete->setNext(nullptr);
+	while (prevPtr->getNext() != dronetodelete)
+		prevPtr = prevPtr->getNext();
+
+	prevPtr->setNext(nullptr);
+	backPtr = prevPtr;
+
 	delete dronetodelete;
 	count--;
 	return true;
