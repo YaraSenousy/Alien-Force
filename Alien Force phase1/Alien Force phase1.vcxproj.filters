@@ -36,7 +36,6 @@
     <ClInclude Include="StackADT.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-
     <ClInclude Include="unit.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -57,15 +56,18 @@
     </ClInclude>
     <ClInclude Include="AlienSolider.h">
       <Filter>Header Files</Filter>
-      </ClInclude>
-
+    </ClInclude>
     <ClInclude Include="Dequeue.h">
-
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EarthArmy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AlienArmy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-
     <ClCompile Include="EarthSolider.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -83,10 +85,17 @@
     </ClCompile>
     <ClCompile Include="AlienSolider.cpp">
       <Filter>Source Files</Filter>
-      </ClCompile>
-
+    </ClCompile>
     <ClCompile Include="Dequeue.cpp">
-
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AlienDrone.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="EarthArmy.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AlienArmy.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
