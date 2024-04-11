@@ -131,9 +131,13 @@
     <ClInclude Include="AlienMonster.h" />
     <ClInclude Include="AlienSolider.h" />
     <ClInclude Include="ArrayStack.h" />
+
     <ClInclude Include="EarthGunnery.h" />
     <ClInclude Include="EarthSolider.h" />
     <ClInclude Include="EarthTank.h" />
+
+    <ClInclude Include="Dequeue.h" />
+
     <ClInclude Include="LinkedQueue.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="priNode.h" />
@@ -149,6 +153,9 @@
     <ClCompile Include="EarthSolider.cpp" />
     <ClCompile Include="EarthTank.cpp" />
     <ClCompile Include="unit.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Dequeue.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
