@@ -20,5 +20,6 @@ public:
 	randGen* getRandGen();
 	void print();
 	void LoadFromFile(string filename);
+	void testcode();
 };
 

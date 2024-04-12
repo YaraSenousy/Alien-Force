@@ -158,8 +158,10 @@
     <ClCompile Include="EarthSolider.cpp" />
     <ClCompile Include="EarthTank.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="MonsterArray.cpp" />
     <ClCompile Include="randGen.cpp" />
+    <ClCompile Include="testcode.cpp" />
     <ClCompile Include="unit.cpp" />
   </ItemGroup>
   <ItemGroup>
