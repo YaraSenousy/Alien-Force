@@ -62,3 +62,79 @@ void randGen::AssignGenerated(int timestep)
 		}
 	}
 }
+
+void randGen::setN(int n)
+{
+	N = n;
+}
+
+void randGen::setET(int et)
+{
+	ET = et;
+}
+
+void randGen::setEG(int eg)
+{
+	EG = eg;
+}
+
+void randGen::setES(int es)
+{
+	ES = es;
+}
+
+void randGen::setAS(int as)
+{
+	AS = as;
+}
+
+void randGen::setAD(int ad)
+{
+	AD = ad;
+}
+
+void randGen::setAM(int am)
+{
+	AM = am;
+}
+
+void randGen::setProb(int p)
+{
+	prob = p;
+}
+
+void randGen::setEH(int minEH, int maxEH)
+{
+	minEHealth = minEH;
+	maxEHealth = maxEH;
+}
+
+void randGen::setEP(int minEP, int maxEP)
+{
+	minEPower = minEP;
+	maxEPower = maxEP;
+}
+
+void randGen::setEC(int minEC, int maxEC)
+{
+	minECap = minEC;
+	maxECap = maxEC;
+}
+
+void randGen::setAH(int minAH, int maxAH)
+{
+	minAHealth = minAH;
+	maxAHealth = maxAH;
+}
+
+void randGen::setAP(int minAP, int maxAP)
+{
+	minAPower = minAP;
+	maxAPower= maxAP;
+}
+
+void randGen::setAC(int minAC, int maxAC)
+{
+	minACap = minAC;
+	maxACap = maxAC;
+}
