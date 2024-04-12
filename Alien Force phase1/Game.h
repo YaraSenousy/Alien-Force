@@ -14,6 +14,7 @@ private:
 	EarthArmy earth_army;
 	randGen RandGen;
 public:
+	Game();
 	EarthArmy* getEarthArmy();
 	AlienArmy* getAlienArmy();
 	randGen* getRandGen();

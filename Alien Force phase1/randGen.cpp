@@ -2,11 +2,6 @@
 #include "Game.h"
 #include <ctime>
 
-//sets game pointer
-randGen::randGen(Game* game)
-{
-	TheGame = game;
-}
 
 //parameters: timestep to add unit 
 // randomly generated int B to determine which type of unit to add in reference to distributions from input file
@@ -51,16 +46,22 @@ void randGen::AssignGenerated(int timestep)
 	int A = 1 + (rand() % 100);
 	if (A <= prob) {
 		unit* temp;
-		int B = 1 + (rand() % 100);
 		for (int i{}; i < N; i++) {
+			int B = 1 + (rand() % 100);
 			temp = CreateUnit(timestep, B);
 			TheGame->getEarthArmy()->addUnit(temp);
 		}
 		for (int i{}; i < N; i++) {
+			int B = 1 + (rand() % 100);
 			temp = CreateUnit(timestep, B,2);
 			TheGame->getAlienArmy()->addUnit(temp);
 		}
 	}
+}
+
+void randGen::setGame(Game* g)
+{
+	TheGame = g;
 }
 
 void randGen::setN(int n)

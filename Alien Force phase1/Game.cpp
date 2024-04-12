@@ -1,6 +1,11 @@
 #include "Game.h"
 #include "string"
 
+Game::Game()
+{
+    RandGen.setGame(this);
+}
+
 EarthArmy* Game::getEarthArmy()
 {
     return &earth_army;

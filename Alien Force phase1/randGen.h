@@ -11,9 +11,9 @@ private:
 	int minEHealth,maxEHealth,minEPower,maxEPower,minECap,maxECap;
 	int minAHealth, maxAHealth, minAPower, maxAPower, minACap, maxACap;
 public:
-	randGen(Game* game);
 	unit* CreateUnit(int timestep,int B,int type=1);
 	void AssignGenerated(int timestep);
+	void setGame(Game* g);
 	void setN(int n);
 	void setET(int et);
 	void setEG(int eg);
