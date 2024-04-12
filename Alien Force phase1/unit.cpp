@@ -34,6 +34,21 @@ void unit::setTimeDead(int td)
 	Td = td;
 }
 
+int unit::getHealth()
+{
+	return health;
+}
+
+int unit::getPower()
+{
+	return power;
+}
+
+int unit::getAttack_cap()
+{
+	return attack_cap;
+}
+
 ostream& operator<<(ostream out, unit* u) {
 	if (u) {
 		out << u->getID();

@@ -12,7 +12,8 @@ void EarthArmy::addUnit(unit* u)
 		ET.push(static_cast<EarthTank*> (u));
 	}
 	else if (u->getType() == "EG") {
-		EG.enqueue(static_cast<EarthGunnery*> (u), 5);
+		int priority = u->getPower() * (u->getHealth()/100);
+		EG.enqueue(static_cast<EarthGunnery*> (u), priority);
 	}
 }
 

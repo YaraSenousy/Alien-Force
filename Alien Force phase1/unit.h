@@ -21,6 +21,9 @@ public:
 	void setID(int id);
 	void sethealth(int h);
 	void setTimeDead(int td);
+	int getHealth();
+	int getPower();
+	int getAttack_cap();
 };
 
 
