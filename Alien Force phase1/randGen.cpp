@@ -45,7 +45,7 @@ unit* randGen::CreateUnit(int timestep,int B,int type)
 	return Unit;
 }
 
-void randGen::Func(int timestep)
+void randGen::AssignGenerated(int timestep)
 {
 	srand((int)time(0));
 	int A = 1 + (rand() % 100);
@@ -54,10 +54,11 @@ void randGen::Func(int timestep)
 		int B = 1 + (rand() % 100);
 		for (int i{}; i < N; i++) {
 			temp = CreateUnit(timestep, B);
-			
+			TheGame->getEarthArmy()->addUnit(temp);
 		}
 		for (int i{}; i < N; i++) {
 			temp = CreateUnit(timestep, B,2);
+			TheGame->getAlienArmy()->addUnit(temp);
 		}
 	}
 }

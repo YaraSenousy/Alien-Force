@@ -13,7 +13,7 @@ private:
 public:
 	randGen(Game* game);
 	unit* CreateUnit(int timestep,int B,int type=1);
-	void Func(int timestep);
+	void AssignGenerated(int timestep);
 };
 #endif
 
