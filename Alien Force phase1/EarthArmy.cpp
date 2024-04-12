@@ -15,3 +15,15 @@ void EarthArmy::addUnit(unit* u)
 		EG.enqueue(static_cast<EarthGunnery*> (u), 5);
 	}
 }
+
+void EarthArmy::print()
+{
+	cout << "============== Earth Army Alive Units =================" << endl;
+	cout << ES.getCount() << " ES ";
+	ES.print();
+	cout << ET.getCount() << " ET ";
+	ET.print();
+	cout << EG.getCount() << " EG ";
+	EG.print();
+
+}

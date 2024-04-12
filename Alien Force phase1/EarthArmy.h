@@ -18,5 +18,6 @@ public:
 		EarthCounter = 1;
 	}
 	void addUnit(unit* u);
+	void print();
 };
 

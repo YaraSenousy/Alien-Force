@@ -20,6 +20,7 @@ public:
 	bool peek(AlienDrone*& frontDrone) const; //standard peek front
 	bool peekBack(AlienDrone*& backDrone) ; //peek at end of queue
 	void print(); //prints in standard sequence of queue
+	int getCount();
 	Dequeue(Dequeue& DQ); //copy constructor
 
 	virtual ~Dequeue(); //destructor
