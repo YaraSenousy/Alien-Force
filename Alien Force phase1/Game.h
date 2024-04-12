@@ -15,5 +15,7 @@ private:
 public:
 	EarthArmy* getEarthArmy();
 	AlienArmy* getAlienArmy();
+	randGen* getRandGen();
+	void print();
 };
 

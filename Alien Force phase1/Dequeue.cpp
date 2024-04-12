@@ -130,6 +130,11 @@ void Dequeue::print()
 	return;
 }
 
+int Dequeue::getCount()
+{
+	return count;
+}
+
 //copy constructor for dequeue
 Dequeue::Dequeue(Dequeue& DQ)
 {

@@ -16,3 +16,14 @@ void AlienArmy::addUnit(unit* u) {
 		AD.enqueue(drone);
 	}
 }
+
+void AlienArmy::print()
+{
+	cout << "============== Alien Army Alive Units =================" << endl;
+	cout << AS.getCount() << " AS ";
+	AS.print();
+	cout << AM.getCount() << " AM ";
+	AM.print();
+	cout << AD.getCount() << " AD ";
+	AD.print();
+}

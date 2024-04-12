@@ -18,5 +18,6 @@ public:
 		AlienCounter = 2000;
 	}
 	void addUnit(unit* u);
+	void print();
 };
 
