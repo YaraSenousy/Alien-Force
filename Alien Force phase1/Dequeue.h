@@ -1,7 +1,7 @@
 #ifndef DEQUEUE
 #define DEQUEUE
 #include "LinkedQueue.h"
-#include "Node.h"
+
 #include "AlienDrone.h"
 
 class Dequeue : public LinkedQueue<AlienDrone*>
@@ -12,7 +12,7 @@ private:
 	int count; //length of dequeue
 public:
 	Dequeue();
-	//bool isEmpty() const; 
+	bool isEmpty() const; 
 	//bool enqueue(AlienDrone*& newEntry); //standard enqueue from the end of queue
 	bool enqueueFront(AlienDrone* newDrone); //enqueue from the front of queue
 	//bool dequeue(AlienDrone*& frontDrone); //standard dequeue front
@@ -26,4 +26,6 @@ public:
 	virtual ~Dequeue(); //destructor
 };
 #endif
+
+
 

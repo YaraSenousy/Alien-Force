@@ -1,5 +1,5 @@
 #include "Dequeue.h"
-#include "Node.h"
+
 
 //sets front and back ptrs to null by default
 //dequeue is empty by default
@@ -7,14 +7,15 @@ Dequeue::Dequeue()
 {
 	frontPtr = nullptr;
 	backPtr = nullptr;
+	count = 0;
 }
 
 //checks if dequeue is empty 
 //returns 1 if empty, 0 otherwise
-//bool Dequeue::isEmpty() const
-//{
-//	return (frontPtr==nullptr);
-//}
+bool Dequeue::isEmpty() const
+{
+	return (frontPtr==nullptr);
+}
 
 //standard enqueue from the back of queue
 //returns 0 only if new drone cannot be allocated 
@@ -43,11 +44,11 @@ bool Dequeue::enqueueFront(AlienDrone* newDrone)
 	if (!newdrone)
 		return false;
 	if (isEmpty())
-		this->backPtr = newdrone;
+		backPtr = newdrone;
 	else
 		newdrone->setNext(frontPtr);
-	this->frontPtr = newdrone;
-	this->count++;
+	frontPtr = newdrone;
+	count++;
 	return true;
 }
 
@@ -152,7 +153,7 @@ Dequeue::Dequeue(Dequeue& DQ)
 Dequeue::~Dequeue()
 {
 	AlienDrone* temp = frontPtr->getItem();
-	while (temp)
+	while (temp) 
 		dequeue(temp);
 }
 
