@@ -26,5 +26,10 @@ public:
 	int getAttack_cap();
 };
 
-
+inline ostream& operator<<(ostream& out, unit* u) {
+	if (u) {
+		out << u->getID();
+	}
+	return out;
+}
 

@@ -54,9 +54,3 @@ int unit::getAttack_cap()
 	return attack_cap;
 }
 
-ostream& operator<<(ostream& out, unit* u) {
-	if (u) {
-		out << u->getID();
-	}
-	return out;
-}

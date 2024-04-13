@@ -17,6 +17,7 @@ void EarthArmy::addUnit(unit* u)
 	}
 }
 
+
 void EarthArmy::print()
 {
 	cout << "============== Earth Army Alive Units =================" << endl;
