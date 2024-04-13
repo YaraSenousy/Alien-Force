@@ -7,7 +7,7 @@ void Game::testcode()
 	LoadFromFile("input.txt");
 	for (int time{ 1 }; time <= 50; time++) {
 		RandGen.AssignGenerated(time);
-		int x = 1 + 100 % rand();
+		int x = 1 + (rand() % 100);
 		if (x < 10) {
 			EarthSolider* ES;
 			if (earth_army.getESlist().dequeue(ES))
@@ -58,6 +58,6 @@ void Game::testcode()
 					KilledList.enqueue(AD2);
 			}
 		}
-		print();
+		print(time);
 	}
 }

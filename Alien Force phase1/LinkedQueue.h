@@ -199,7 +199,7 @@ inline void LinkedQueue<T>::print()
 		cout << ptr->getItem() << ",";
 		ptr = ptr->getNext();
 	}
-	cout << "]" << endl;
+	cout << "]";
 }
 /////////////////////////////////////////////////////////////////////////////////////////
 /*

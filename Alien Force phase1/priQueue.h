@@ -80,7 +80,7 @@ public:
             cout << ptr->getItem(pri) << ",";
             ptr = ptr->getNext();
         }
-        cout << "]" << endl;
+        cout << "]";
     }
 };
 

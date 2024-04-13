@@ -5,6 +5,7 @@
 #include "EarthArmy.h"
 #include "randGen.h"
 #include <fstream>
+#include <sstream>
 
 class Game
 {
@@ -18,7 +19,7 @@ public:
 	EarthArmy* getEarthArmy();
 	AlienArmy* getAlienArmy();
 	randGen* getRandGen();
-	void print();
+	void print(int TS);
 	void LoadFromFile(string filename);
 	void testcode();
 };

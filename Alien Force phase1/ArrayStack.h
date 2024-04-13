@@ -67,11 +67,12 @@ public:
 	}
 
 	void print() {
+		if (isEmpty()) return;
 		cout << "[";
 		for (int i{}; i < count; i++) {
 			cout << items[i] << ",";
 		}
-		cout << "]" << endl;
+		cout << "]";
 	}
 
 }; // end ArrayStack

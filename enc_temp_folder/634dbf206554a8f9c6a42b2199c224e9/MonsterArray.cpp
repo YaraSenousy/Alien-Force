@@ -29,7 +29,7 @@ bool MonsterArray::pop(AlienMonster*& random)
 	if (isEmpty()) return false;
 	//generating random index from 0 to count-1 (the last entry)
 	srand((int)time(0));
-	int randomIndex = rand()%(count);
+	int randomIndex = rand()%(count-1);
 	//returning the random item
 	random = items[randomIndex];
 	//switching the last element to the random index
@@ -44,7 +44,7 @@ bool MonsterArray::peek(AlienMonster*& random) const
 	if (isEmpty()) return false;
 	//generating random index from 0 to count-1 (the last entry)
 	srand((int)time(0));
-	int randomIndex = rand() % (count);
+	int randomIndex = rand() % (count - 1);
 	//returning the random item
 	random = items[randomIndex];
 	return true;
