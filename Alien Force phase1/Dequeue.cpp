@@ -152,6 +152,7 @@ Dequeue::Dequeue(Dequeue& DQ)
 //destructor
 Dequeue::~Dequeue()
 {
+	if (isEmpty()) return;
 	AlienDrone* temp = frontPtr->getItem();
 	while (temp) 
 		dequeue(temp);

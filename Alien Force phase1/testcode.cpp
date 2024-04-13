@@ -3,10 +3,11 @@
 
 void Game::testcode()
 {
-	srand((int)time(0));
+	
 	LoadFromFile("input.txt");
-	for (int time{ 1 }; time <= 50; time++) {
-		RandGen.AssignGenerated(time);
+	for (int ts{ 1 }; ts <= 50; ts++) {
+		srand((int)time(0));
+		RandGen.AssignGenerated(ts);
 		int x = 1 + (rand() % 100);
 		if (x < 10) {
 			EarthSolider* ES;
@@ -14,8 +15,8 @@ void Game::testcode()
 				earth_army.addUnit(ES);
 		}
 		else if (x < 20) {
-			EarthTank* ET;
-			if (earth_army.getETlist().pop(ET));
+			EarthTank* ET = nullptr;
+			if (earth_army.getETlist().pop(ET))
 				KilledList.enqueue(ET);
 		}
 		else if (x < 30) {
@@ -49,8 +50,8 @@ void Game::testcode()
 		}
 		else if (x < 60) {
 			for (int i{}; i < 3; i++) {
-				AlienDrone* AD1;
-				AlienDrone*	AD2;
+				AlienDrone* AD1 = nullptr;
+				AlienDrone*	AD2 = nullptr;
 				//make sure that there are 2 drones in the list
 				if (alien_army.getADlist().dequeue(AD1)) 
 					KilledList.enqueue(AD1);
@@ -58,6 +59,6 @@ void Game::testcode()
 					KilledList.enqueue(AD2);
 			}
 		}
-		print(time);
+		print(ts);
 	}
 }
