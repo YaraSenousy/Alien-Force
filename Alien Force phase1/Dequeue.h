@@ -1,10 +1,10 @@
 #ifndef DEQUEUE
 #define DEQUEUE
-#include "QueueADT.h"
-#include "Node.h"
+#include "LinkedQueue.h"
+
 #include "AlienDrone.h"
 
-class Dequeue : public QueueADT<AlienDrone*>
+class Dequeue : public LinkedQueue<AlienDrone*>
 {
 private:
 	Node<AlienDrone*>* frontPtr; //pointer to head of dequeue
@@ -13,17 +13,19 @@ private:
 public:
 	Dequeue();
 	bool isEmpty() const; 
-	bool enqueue(const AlienDrone*& newEntry); //standard enqueue from the end of queue
-	bool enqueueFront( AlienDrone*& newDrone); //enqueue from the front of queue
-	bool dequeue(AlienDrone*& frontDrone); //standard dequeue front
+	//bool enqueue(AlienDrone*& newEntry); //standard enqueue from the end of queue
+	bool enqueueFront(AlienDrone* newDrone); //enqueue from the front of queue
+	//bool dequeue(AlienDrone*& frontDrone); //standard dequeue front
 	bool dequeueBack(AlienDrone*& backDrone); //dequeue from the end of queue
-	bool peek(AlienDrone*& frontDrone) const; //standard peek front
+	//bool peek(AlienDrone*& frontDrone) const; //standard peek front
 	bool peekBack(AlienDrone*& backDrone) ; //peek at end of queue
-	void print(); //prints in standard sequence of queue
-	int getCount();
+	//void print(); //prints in standard sequence of queue
+	//int getCount();
 	Dequeue(Dequeue& DQ); //copy constructor
 
 	virtual ~Dequeue(); //destructor
 };
 #endif
+
+
 
