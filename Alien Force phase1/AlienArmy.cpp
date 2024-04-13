@@ -27,3 +27,18 @@ void AlienArmy::print()
 	cout << AD.getCount() << " AD ";
 	AD.print();
 }
+
+LinkedQueue<AlienSolider*> AlienArmy::getASlist()
+{
+	return AS;
+}
+
+Dequeue AlienArmy::getADlist()
+{
+	return AD;
+}
+
+MonsterArray AlienArmy::getAMlist()
+{
+	return AM;
+}

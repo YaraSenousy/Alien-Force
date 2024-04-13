@@ -4,7 +4,7 @@ unit::unit(string t, int tj, int h, int p, int ac)
 {
 	type = t;
 	Tj = tj;
-	sethealth(h);
+	setHealth(h);
 	power = p;
 	attack_cap = ac;
 }
@@ -24,9 +24,14 @@ void unit::setID(int id)
 	ID = id;
 }
 
-void unit::sethealth(int h)
+void unit::setHealth(int h)
 {
-	health = (h>100)? 100:h;
+	if (h < 0)
+		health = 0;
+	else if (h > 100)
+		health = 100;
+	else
+		health = h;
 }
 
 void unit::setTimeDead(int td)

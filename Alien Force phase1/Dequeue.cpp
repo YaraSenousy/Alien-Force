@@ -102,7 +102,7 @@ bool Dequeue::dequeueBack(AlienDrone*& backDrone)
 //peeks at first drone with out removing it
 bool Dequeue::peek(AlienDrone*& frontDrone) const
 {
-	if (isEmpty) return false;
+	if (isEmpty()) return false;
 	frontDrone = frontPtr->getItem();
 	return true;
 }
@@ -110,7 +110,7 @@ bool Dequeue::peek(AlienDrone*& frontDrone) const
 //peeks at last drone with out removing it
 bool Dequeue::peekBack(AlienDrone*& backDrone)
 {
-	if (isEmpty) return false;
+	if (isEmpty()) return false;
 	backDrone = backPtr->getItem();
 	return true;
 }

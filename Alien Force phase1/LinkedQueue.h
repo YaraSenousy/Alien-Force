@@ -192,7 +192,7 @@ inline int LinkedQueue<T>::getCount()
 template<typename T>
 inline void LinkedQueue<T>::print()
 {
-	if (isEmpty) return;
+	if (isEmpty()) return;
 	Node<T>* ptr = frontPtr;
 	cout << "[";
 	while (ptr) {

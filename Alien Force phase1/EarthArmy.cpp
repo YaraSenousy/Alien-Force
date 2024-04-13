@@ -28,3 +28,18 @@ void EarthArmy::print()
 	EG.print();
 
 }
+
+LinkedQueue<EarthSolider*> EarthArmy::getESlist()
+{
+	return ES;
+}
+
+ArrayStack<EarthTank*> EarthArmy::getETlist()
+{
+	return ET;
+}
+
+priQueue<EarthGunnery*> EarthArmy::getEGlist()
+{
+	return EG;
+}
