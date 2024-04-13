@@ -76,7 +76,8 @@ public:
         priNode<T>* ptr = head;
         cout << "[";
         while (ptr) {
-            cout << ptr->getItem() << ",";
+            int pri;
+            cout << ptr->getItem(pri) << ",";
             ptr = ptr->getNext();
         }
         cout << "]" << endl;
