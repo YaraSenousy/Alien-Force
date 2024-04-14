@@ -59,5 +59,7 @@ void Game::testcode()
 			}
 		}
 		print(ts);
+		cout << "Press Enter to continue..." << endl;
+		cin.get();
 	}
 }
