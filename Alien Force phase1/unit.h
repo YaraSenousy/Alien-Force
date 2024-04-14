@@ -19,12 +19,17 @@ public:
 	string getType();
 	int getID();
 	void setID(int id);
-	void sethealth(int h);
+	void setHealth(int h);
 	void setTimeDead(int td);
 	int getHealth();
 	int getPower();
 	int getAttack_cap();
 };
 
-
+inline ostream& operator<<(ostream& out, unit* u) {
+	if (u) {
+		out << u->getID();
+	}
+	return out;
+}
 

@@ -22,8 +22,24 @@ void AlienArmy::print()
 	cout << "============== Alien Army Alive Units =================" << endl;
 	cout << AS.getCount() << " AS ";
 	AS.print();
-	cout << AM.getCount() << " AM ";
+	cout << endl << AM.getCount() << " AM ";
 	AM.print();
-	cout << AD.getCount() << " AD ";
+	cout << endl << AD.getCount() << " AD ";
 	AD.print();
+	cout << endl;
+}
+
+LinkedQueue<AlienSolider*> &AlienArmy::getASlist()
+{
+	return AS;
+}
+
+Dequeue &AlienArmy::getADlist()
+{
+	return AD;
+}
+
+MonsterArray &AlienArmy::getAMlist()
+{
+	return AM;
 }

@@ -8,11 +8,11 @@
 //int type to determine earth unit or alien unit
 unit* randGen::CreateUnit(int timestep,int B,int type)
 {
-	unit* Unit;
+	unit* Unit = nullptr;
 	if (type == 1) {
-		int health = minEHealth + (rand() % maxEHealth); //generate random health within range from input file
-		int power = minEPower + (rand() % maxEPower); //generate random power within range from input file
-		int cap = minECap + (rand() % maxECap); //generate random capacity within range from input file
+		int health = minEHealth + (rand() % (maxEHealth - minEHealth + 1)); //generate random health within range from input file
+		int power = minEPower + (rand() % (maxEPower - minEPower + 1)); //generate random power within range from input file
+		int cap = minECap + (rand() % (maxECap - minECap + 1)); //generate random capacity within range from input file
 		if (B <= ES) {
 			Unit = new EarthSolider(timestep, health, power, cap);
 		}
@@ -24,9 +24,9 @@ unit* randGen::CreateUnit(int timestep,int B,int type)
 		}
 	}
 	else {
-		int health = minAHealth + (rand() % maxAHealth); //generate random health within range from input file
-		int power = minAPower + (rand() % maxAPower); //generate random power within range from input file
-		int cap = minACap + (rand() % maxACap); //generate random capacity within range from input file
+		int health = minAHealth + (rand() % (maxAHealth - minAHealth + 1)); //generate random health within range from input file
+		int power = minAPower + (rand() % (maxAPower - minAPower + 1)); //generate random power within range from input file
+		int cap = minACap + (rand() % (maxACap - minACap + 1)); //generate random capacity within range from input file
 		if (B <= AS) {
 			Unit = new AlienSolider(timestep, health, power, cap);
 		}
@@ -42,7 +42,6 @@ unit* randGen::CreateUnit(int timestep,int B,int type)
 
 void randGen::AssignGenerated(int timestep)
 {
-	srand((int)time(0));
 	int A = 1 + (rand() % 100);
 	if (A <= prob) {
 		unit* temp;

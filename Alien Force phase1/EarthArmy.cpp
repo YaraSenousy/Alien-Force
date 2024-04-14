@@ -17,14 +17,31 @@ void EarthArmy::addUnit(unit* u)
 	}
 }
 
+
 void EarthArmy::print()
 {
 	cout << "============== Earth Army Alive Units =================" << endl;
 	cout << ES.getCount() << " ES ";
 	ES.print();
-	cout << ET.getCount() << " ET ";
+	cout << endl << ET.getCount() << " ET ";
 	ET.print();
-	cout << EG.getCount() << " EG ";
+	cout << endl << EG.getCount() << " EG ";
 	EG.print();
+	cout << endl;
 
+}
+
+LinkedQueue<EarthSolider*> &EarthArmy::getESlist()
+{
+	return ES;
+}
+
+ArrayStack<EarthTank*> &EarthArmy::getETlist()
+{
+	return ET;
+}
+
+priQueue<EarthGunnery*> &EarthArmy::getEGlist()
+{
+	return EG;
 }

@@ -1,5 +1,5 @@
 #include "Dequeue.h"
-#include "Node.h"
+
 
 //sets front and back ptrs to null by default
 //dequeue is empty by default
@@ -7,6 +7,7 @@ Dequeue::Dequeue()
 {
 	frontPtr = nullptr;
 	backPtr = nullptr;
+	count = 0;
 }
 
 //checks if dequeue is empty 
@@ -19,13 +20,13 @@ bool Dequeue::isEmpty() const
 //standard enqueue from the back of queue
 //returns 0 only if new drone cannot be allocated 
 //1 otherwise
-bool Dequeue::enqueue(const AlienDrone*& newDrone)
+bool Dequeue::enqueue(AlienDrone*& newDrone)
 {
-	Node<AlienDrone*>* newdrone = new Node<AlienDrone*>(const_cast<AlienDrone*>(newDrone));
+	Node<AlienDrone*>* newdrone = new Node<AlienDrone*>(newDrone);
 	if (!newdrone)
 		return false;
 	if (isEmpty())
-		frontPtr = newdrone;
+		this->frontPtr = newdrone;
 	else
 		backPtr->setNext(newdrone);
 
@@ -37,7 +38,7 @@ bool Dequeue::enqueue(const AlienDrone*& newDrone)
 //enqueues from the front of queue
 //returns 0 only if new drone cannot be allocated 
 //1 otherwise
-bool Dequeue::enqueueFront(AlienDrone*& newDrone)
+bool Dequeue::enqueueFront(AlienDrone* newDrone)
 {
 	Node<AlienDrone*>* newdrone = new Node<AlienDrone*>(newDrone);
 	if (!newdrone)
@@ -102,7 +103,7 @@ bool Dequeue::dequeueBack(AlienDrone*& backDrone)
 //peeks at first drone with out removing it
 bool Dequeue::peek(AlienDrone*& frontDrone) const
 {
-	if (isEmpty) return false;
+	if (isEmpty()) return false;
 	frontDrone = frontPtr->getItem();
 	return true;
 }
@@ -110,7 +111,7 @@ bool Dequeue::peek(AlienDrone*& frontDrone) const
 //peeks at last drone with out removing it
 bool Dequeue::peekBack(AlienDrone*& backDrone)
 {
-	if (isEmpty) return false;
+	if (isEmpty()) return false;
 	backDrone = backPtr->getItem();
 	return true;
 }
@@ -123,7 +124,9 @@ void Dequeue::print()
 	Node<AlienDrone*>* printptr = frontPtr;
 	cout << "[";
 	while (printptr) {
-		cout << printptr << ",";
+		cout << printptr->getItem();
+		if (printptr->getNext())
+			cout << ",";
 		printptr = printptr->getNext();
 	}
 	cout << "]" << endl;
@@ -151,8 +154,8 @@ Dequeue::Dequeue(Dequeue& DQ)
 //destructor
 Dequeue::~Dequeue()
 {
+	if (isEmpty()) return;
 	AlienDrone* temp = frontPtr->getItem();
-	while (temp)
-		dequeue(temp);
+	while (dequeue(temp));
 }
 
