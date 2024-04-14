@@ -42,7 +42,6 @@ unit* randGen::CreateUnit(int timestep,int B,int type)
 
 void randGen::AssignGenerated(int timestep)
 {
-	srand((int)time(0));
 	int A = 1 + (rand() % 100);
 	if (A <= prob) {
 		unit* temp;
