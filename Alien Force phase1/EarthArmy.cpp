@@ -31,17 +31,17 @@ void EarthArmy::print()
 
 }
 
-LinkedQueue<EarthSolider*> EarthArmy::getESlist()
+LinkedQueue<EarthSolider*> &EarthArmy::getESlist()
 {
 	return ES;
 }
 
-ArrayStack<EarthTank*> EarthArmy::getETlist()
+ArrayStack<EarthTank*> &EarthArmy::getETlist()
 {
 	return ET;
 }
 
-priQueue<EarthGunnery*> EarthArmy::getEGlist()
+priQueue<EarthGunnery*> &EarthArmy::getEGlist()
 {
 	return EG;
 }

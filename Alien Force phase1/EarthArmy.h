@@ -19,8 +19,8 @@ public:
 	}
 	void addUnit(unit* u);
 	void print();
-	LinkedQueue<EarthSolider*> getESlist();
-	ArrayStack<EarthTank*> getETlist();
-	priQueue<EarthGunnery*> getEGlist();
+	LinkedQueue<EarthSolider*>& getESlist();
+	ArrayStack<EarthTank*>& getETlist();
+	priQueue<EarthGunnery*>& getEGlist();
 };
 
