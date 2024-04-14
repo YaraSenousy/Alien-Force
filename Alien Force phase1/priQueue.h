@@ -77,7 +77,9 @@ public:
         cout << "[";
         while (ptr) {
             int pri;
-            cout << ptr->getItem(pri) << ",";
+            cout << ptr->getItem(pri);
+            if (ptr->getNext()) 
+                cout << ",";
             ptr = ptr->getNext();
         }
         cout << "]";

@@ -124,7 +124,9 @@ void Dequeue::print()
 	Node<AlienDrone*>* printptr = frontPtr;
 	cout << "[";
 	while (printptr) {
-		cout << printptr << ",";
+		cout << printptr;
+		if (printptr->getNext())
+			cout << ",";
 		printptr = printptr->getNext();
 	}
 	cout << "]" << endl;

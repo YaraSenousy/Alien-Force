@@ -70,7 +70,9 @@ public:
 		if (isEmpty()) return;
 		cout << "[";
 		for (int i{}; i < count; i++) {
-			cout << items[i] << ",";
+			cout << items[i];
+			if (i!=count-1)
+				cout << ",";
 		}
 		cout << "]";
 	}
