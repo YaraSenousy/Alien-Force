@@ -31,7 +31,7 @@ void Game::print(int TS)
     alien_army.print();
     cout << endl;
     cout << "============== Killed/Destructed Units =================" << endl;
-    cout << KilledList.getCount() << " units";
+    cout << KilledList.getCount() << " units ";
     KilledList.print();
     cout << endl;
     cout << endl;
@@ -60,15 +60,6 @@ void Game::LoadFromFile(string filename)
         RandGen.setAD(x);
         InputFile >> x;
         RandGen.setProb(x);
-        //char z;
-        //for (int i{}; i < 12; i++) {
-        //    string y;
-        //    while (InputFile >> z) {
-        //        if (z == 45 || z == ' ') break;
-        //        y = y + z;
-        //    }
-        //    arr[i] = stoi(y);
-        //}
 
         //loop on the last lines
         string line;
