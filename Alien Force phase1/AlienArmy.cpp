@@ -29,17 +29,17 @@ void AlienArmy::print()
 	cout << endl;
 }
 
-LinkedQueue<AlienSolider*> AlienArmy::getASlist()
+LinkedQueue<AlienSolider*> &AlienArmy::getASlist()
 {
 	return AS;
 }
 
-Dequeue AlienArmy::getADlist()
+Dequeue &AlienArmy::getADlist()
 {
 	return AD;
 }
 
-MonsterArray AlienArmy::getAMlist()
+MonsterArray &AlienArmy::getAMlist()
 {
 	return AM;
 }

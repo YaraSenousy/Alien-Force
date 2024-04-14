@@ -19,8 +19,8 @@ public:
 	}
 	void addUnit(unit* u);
 	void print();
-	LinkedQueue<AlienSolider*> getASlist();
-	Dequeue getADlist();
-	MonsterArray getAMlist();
+	LinkedQueue<AlienSolider*> &getASlist();
+	Dequeue &getADlist();
+	MonsterArray &getAMlist();
 };
 
