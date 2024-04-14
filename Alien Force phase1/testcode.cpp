@@ -3,10 +3,9 @@
 
 void Game::testcode()
 {
-	
+	srand((int)time(0));
 	LoadFromFile("input.txt");
 	for (int ts{ 1 }; ts <= 50; ts++) {
-		srand((int)time(0));
 		RandGen.AssignGenerated(ts);
 		int x = 1 + (rand() % 100);
 		if (x < 10) {
