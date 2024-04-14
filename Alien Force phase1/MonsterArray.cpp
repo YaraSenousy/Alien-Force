@@ -60,7 +60,9 @@ void MonsterArray::print()
 	if (isEmpty()) return;
 	cout << "[";
 	for (int i{}; i < count; i++) {
-		cout << items[i]->getID() << ",";
+		cout << items[i]->getID();
+			if (i!=count-1)
+				cout<< ",";
 	}
 	cout << "]";
 }

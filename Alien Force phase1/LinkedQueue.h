@@ -196,7 +196,9 @@ inline void LinkedQueue<T>::print()
 	Node<T>* ptr = frontPtr;
 	cout << "[";
 	while (ptr) {
-		cout << ptr->getItem() << ",";
+		cout << ptr->getItem();
+		if (ptr->getNext())
+			cout << ",";
 		ptr = ptr->getNext();
 	}
 	cout << "]";
