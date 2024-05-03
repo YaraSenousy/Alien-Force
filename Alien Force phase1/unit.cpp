@@ -60,3 +60,8 @@ int unit::getAttack_cap()
 	return attack_cap;
 }
 
+Game* unit::getGame()
+{
+	return TheGame;
+}
+
