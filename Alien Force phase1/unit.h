@@ -29,7 +29,7 @@ public:
 	int getHealth();
 	int getPower();
 	int getAttack_cap();
-	virtual LinkedQueue <unit*> attack() = 0;
+	virtual bool attack(LinkedQueue<unit*>) = 0;
 };
 
 inline ostream& operator<<(ostream& out, unit* u) {
