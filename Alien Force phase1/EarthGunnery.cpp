@@ -1,7 +1,7 @@
 #include "EarthGunnery.h"
 #include <cmath>
 
-bool EarthGunnery::attack(LinkedQueue<unit*>)
+bool EarthGunnery::attack(LinkedQueue<unit*> attacked)
 {
 	//getting the monsters and drones lists (by reference) to attack them
 	MonsterArray AM = TheGame->getAlienArmy()->getAMlist();
@@ -33,9 +33,8 @@ bool EarthGunnery::attack(LinkedQueue<unit*>)
 		if (AM_attack > AM_count) // if not enough monsters, attack the rest of the monsters
 			AM_attack = AM_count;
 	}
-	Dequeue temp_AD; //store attacked AD in correct order
+	Dequeue temp_AD; //store attacked AD to return to their list in correct order
 	LinkedQueue<AlienMonster*> temp_AM; //store attacked AM (order doesnt matter)
-	LinkedQueue<unit*> attacked; //store all attacked AM and AD to return to game
 	//attack the monsters
 	for (int i{}; i < AM_attack; i++) {
 		AlienMonster* am;
@@ -43,7 +42,7 @@ bool EarthGunnery::attack(LinkedQueue<unit*>)
 		int health2 = am->getHealth();
 		int damage = (power * health / 100) / sqrt(health2);
 		am->setHealth(health2 - damage);
-		attacked.enqueue(am);
+		attacked.enqueue(am); //store all attacked AM to return to game
 		//if the monster is killed added it to killed list
 		if ((health2 - damage) <= 0)
 			TheGame->killed(am);
@@ -62,7 +61,7 @@ bool EarthGunnery::attack(LinkedQueue<unit*>)
 		int health2 = ad->getHealth();
 		int damage = (power * health / 100) / sqrt(health2);
 		ad->setHealth(health2 - damage);
-		attacked.enqueue(ad);
+		attacked.enqueue(ad); //store all attacked AD to return to game
 		//if the drone is killed added it to killed list
 		if ((health2 - damage) <= 0)
 			TheGame->killed(ad);
@@ -73,12 +72,12 @@ bool EarthGunnery::attack(LinkedQueue<unit*>)
 			temp_AD.enqueueFront(ad);
 
 	}
-	//return the unkilled AM to their lists 
+	//return the alive AM to their lists 
 	AlienMonster* am;
 	while (temp_AM.dequeue(am)) {
 		TheGame->getAlienArmy()->addUnit(am);
 	}
-	//return the unkilled AD to thier lists 
+	//return the alive AD to their lists 
 	AlienDrone* ad;
 	while (!temp_AD.isEmpty()) {
 		if (temp_AD.dequeue(ad))
@@ -86,4 +85,5 @@ bool EarthGunnery::attack(LinkedQueue<unit*>)
 		if (temp_AD.dequeueBack(ad))
 			AD.enqueueFront(ad);
 	}
+	return true;
 }
