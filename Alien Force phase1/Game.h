@@ -7,7 +7,6 @@
 #include <fstream>
 #include <sstream>
 
-class unit;
 class Game
 {
 private:
