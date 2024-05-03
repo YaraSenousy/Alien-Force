@@ -101,6 +101,103 @@ void Game::LoadFromFile(string filename)
     }
 }
 
+void Game::SaveToFile(string filename,string result)
+{
+    //open file in write mode
+    ofstream OutputFile(filename);
+    //write headers for the columns
+    OutputFile << "Td  ID  Tj  Df  Dd  Db" << endl;
+    //unit pointer to dequeue
+    unit* dead = nullptr;
+    //variables to calculate averages need in file
+    int AVGEDf=0, AVGEDd=0, AVGEDb=0;
+    int AVGADf=0, AVGADd=0, AVGADb=0;
+    //loop on killed list, calculate sums needed for averages and write needed information in file
+    while (KilledList.dequeue(dead)) {
+        int Df, Dd, Db;
+        Df = dead->getTimeAttack() - dead->getTimeJoined();
+        Dd = dead->getTimeDead() - dead->getTimeAttack();
+        Db = Df + Dd;
+        //check whether unit is of earth army or alien army
+        if(dead->getID()<2000) {
+            AVGEDf += Df;
+            AVGEDd += Dd;
+            AVGEDb += Db;
+        }
+        else {
+            AVGADf += Df;
+            AVGADf += Dd;
+            AVGADf += Db;
+        }
+        //write to file in the correct format
+        OutputFile << dead->getTimeDead() << "  ";
+        OutputFile << dead->getID() << "  ";
+        OutputFile << dead->getTimeJoined() << "  ";
+        OutputFile << Df << "  ";
+        OutputFile << Dd << "  ";
+        OutputFile << Db <<endl;
+    }
+    //calculate total destructed earth units
+    int totalEarthDestructed=ESK+ETK+EGK;
+    //calculate averages for earth army
+    AVGEDf /= totalEarthDestructed;
+    AVGEDd /= totalEarthDestructed;
+    AVGEDb /= totalEarthDestructed;
+    //total units of each type 
+    int totalES, totalET, totalEG;
+    totalES = ESK + earth_army.getESlist().getCount();
+    totalET = ETK + earth_army.getETlist().getCount();
+    totalEG = EGK + earth_army.getEGlist().getCount();
+    //total of entire earth army
+    int totalEarthUnits = totalES + totalET + totalEG;
+    //output of statistics
+    OutputFile << endl;
+    OutputFile << "Battle result: " << result << endl;
+    OutputFile << endl;
+    OutputFile << "Earth army statistics"<<endl;
+    OutputFile << "Total earth soliders: " << totalES << endl;
+    OutputFile << "Total earth tanks: " << totalET << endl;
+    OutputFile << "Total earth gunnery: " << totalEG << endl;
+    OutputFile << "Percentage of destructed earth soliders relative to total soliders: " << (ESK / totalES) * 100 << "%" << endl;
+    OutputFile << "Percentage of destructed earth tanks relative to total tanks: " << (ETK / totalET) * 100 << "%" << endl;
+    OutputFile << "Percentage of destructed earth gunnery relative to total gunnery: " << (EGK / totalEG) * 100 <<"%"<< endl;
+    OutputFile << "Percentage of total destructed units relative to total units: " << (totalEarthDestructed / totalEarthUnits) * 100 << "%" << endl;
+    OutputFile << "Average Delay before first being shot: " << AVGEDf << endl;
+    OutputFile << "Average time to destruction after first shot: " << AVGEDd << endl;
+    OutputFile << "Average battle time: " << AVGEDb << endl;
+    OutputFile << "Df/Db percentage" << (AVGEDf / AVGEDb) * 100 << endl;
+    OutputFile << "Df/Db percentage" << (AVGEDd / AVGEDb) * 100 << endl;
+    OutputFile << endl;
+
+    //calculate total destructed alien units
+    int totalAlienDestructed = ASK + ADK + AMK;
+    //calculate averages for alien army
+    AVGADf /= totalAlienDestructed;
+    AVGADd /= totalAlienDestructed;
+    AVGADb /= totalAlienDestructed;
+    //total units of each type 
+    int totalAS, totalAD, totalAM;
+    totalAS = ASK + alien_army.getASlist().getCount();
+    totalAD = ADK + alien_army.getADlist().getCount();
+    totalAM = AMK + alien_army.getAMlist().getCount();
+    //total of entire alien army
+    int totalAlienUnits = totalAS + totalAD + totalAM;
+    //output of statistics
+    OutputFile << "Alien army statistics" << endl;
+    OutputFile << "Total alien soliders: " << totalAS << endl;
+    OutputFile << "Total alien drones: " << totalAD << endl;
+    OutputFile << "Total alien monsters: " << totalAM << endl;
+    OutputFile << "Percentage of destructed alien soliders relative to total soliders: " << (ASK / totalAS) * 100 << "%" << endl;
+    OutputFile << "Percentage of destructed alien drones relative to total drones: " << (ADK / totalAD) * 100 << "%" << endl;
+    OutputFile << "Percentage of destructed alien monsters relative to total monsters: " << (AMK / totalEG) * 100 << "%" << endl;
+    OutputFile << "Percentage of total destructed units relative to total units: " << (totalEarthDestructed / totalAlienUnits) * 100 << "%" << endl;
+    OutputFile << "Average Delay before first being shot: " << AVGADf << endl;
+    OutputFile << "Average time to destruction after first shot: " << AVGADd << endl;
+    OutputFile << "Average battle time: " << AVGADb << endl;
+    OutputFile << "Df/Db percentage" << (AVGADf / AVGADb) * 100 << endl;
+    OutputFile << "Df/Db percentage" << (AVGADd / AVGADb) * 100 << endl;
+}
+
 bool Game::killed(unit* dead)
 {
     if (!dead)

@@ -60,3 +60,18 @@ int unit::getAttack_cap()
 	return attack_cap;
 }
 
+int unit::getTimeJoined()
+{
+	return Tj;
+}
+
+int unit::getTimeDead()
+{
+	return Td;
+}
+
+int unit::getTimeAttack()
+{
+	return Ta;
+}
+
