@@ -4,6 +4,12 @@
 Game::Game()
 {
     RandGen.setGame(this);
+    ESK = 0;
+    ETK = 0;
+    EGK = 0;
+    ASK = 0;
+    ADK = 0;
+    AMK = 0;
 }
 
 EarthArmy* Game::getEarthArmy()
@@ -93,4 +99,25 @@ void Game::LoadFromFile(string filename)
         //close the file
         InputFile.close();
     }
+}
+
+bool Game::killed(unit* dead)
+{
+    if (!dead)
+        return false;
+    //adding the dead to the killed list
+    KilledList.enqueue(dead);
+    //incrementing the count of corresponding killed unit
+    if (dead->getType() == "ES")
+        ESK++;
+    else if (dead->getType() == "ET")
+        ETK++;
+    else if (dead->getType() == "EG")
+        EGK++;
+    else if (dead->getType() == "AS")
+        ASK++;
+    else if (dead->getType() == "AD")
+        ADK++;
+    else
+        AMK++;
 }
