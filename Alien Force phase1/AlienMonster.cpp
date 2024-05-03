@@ -99,6 +99,7 @@ bool AlienMonster::attack(LinkedQueue<unit*>)
 			}
 		}
 	}
+
 	//return alive units to their original lists
 	while (tempETlist.pop(et)) {
 		tempETlist.pop(et);
