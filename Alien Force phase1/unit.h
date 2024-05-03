@@ -29,6 +29,9 @@ public:
 	int getHealth();
 	int getPower();
 	int getAttack_cap();
+	int getTimeJoined();
+	int getTimeDead();
+	int getTimeAttack();
 	virtual bool attack(LinkedQueue<unit*>) = 0;
 };
 
