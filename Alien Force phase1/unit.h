@@ -29,7 +29,6 @@ public:
 	int getHealth();
 	int getPower();
 	int getAttack_cap();
-	Game* getGame();
 	virtual LinkedQueue <unit*> attack() = 0;
 };
 
