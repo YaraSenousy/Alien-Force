@@ -14,6 +14,7 @@ private:
 	int Tj; //time joined
 	int Td; //time dead
 	int Ta; //time of first attack
+protected:
 	int health;
 	int power;
 	int attack_cap;
