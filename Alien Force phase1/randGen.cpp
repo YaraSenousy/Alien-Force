@@ -3,6 +3,12 @@
 #include <ctime>
 
 
+randGen::randGen()
+{
+	EarthCounter = 1;
+	AlienCounter = 2000;
+}
+
 //parameters: timestep to add unit 
 // randomly generated int B to determine which type of unit to add in reference to distributions from input file
 //int type to determine earth unit or alien unit
@@ -14,28 +20,32 @@ unit* randGen::CreateUnit(int timestep,int B,int type)
 		int power = minEPower + (rand() % (maxEPower - minEPower + 1)); //generate random power within range from input file
 		int cap = minECap + (rand() % (maxECap - minECap + 1)); //generate random capacity within range from input file
 		if (B <= ES) {
-			Unit = new EarthSolider(timestep, health, power, cap);
+			Unit = new EarthSolider(timestep, health, power, cap, TheGame);
 		}
 		else if (B <= (ES + ET)) {
-			Unit = new EarthTank(timestep, health, power, cap);
+			Unit = new EarthTank(timestep, health, power, cap, TheGame);
 		}
 		else if (B <= (ES + ET + EG)) {
-			Unit = new EarthGunnery(timestep, health, power, cap);
+			Unit = new EarthGunnery(timestep, health, power, cap, TheGame);
 		}
+		Unit->setID(EarthCounter);
+		EarthCounter++;
 	}
 	else {
 		int health = minAHealth + (rand() % (maxAHealth - minAHealth + 1)); //generate random health within range from input file
 		int power = minAPower + (rand() % (maxAPower - minAPower + 1)); //generate random power within range from input file
 		int cap = minACap + (rand() % (maxACap - minACap + 1)); //generate random capacity within range from input file
 		if (B <= AS) {
-			Unit = new AlienSolider(timestep, health, power, cap);
+			Unit = new AlienSolider(timestep, health, power, cap, TheGame);
 		}
 		else if (B <= (AS + AM)) {
-			Unit = new AlienMonster(timestep, health, power, cap);
+			Unit = new AlienMonster(timestep, health, power, cap, TheGame);
 		}
 		else if (B <= (AS + AM + AD)) {
-			Unit = new AlienDrone(timestep, health, power, cap);
+			Unit = new AlienDrone(timestep, health, power, cap, TheGame);
 		}
+		Unit->setID(AlienCounter);
+		AlienCounter++;
 	}
 	return Unit;
 }

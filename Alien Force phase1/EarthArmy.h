@@ -9,14 +9,10 @@
 class EarthArmy
 {
 private:
-	int EarthCounter;
 	LinkedQueue<EarthSolider*> ES;
 	ArrayStack<EarthTank*> ET;
 	priQueue<EarthGunnery*> EG;
 public:
-	EarthArmy() {
-		EarthCounter = 1;
-	}
 	void addUnit(unit* u);
 	void print();
 	LinkedQueue<EarthSolider*>& getESlist();

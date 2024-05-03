@@ -10,7 +10,9 @@ private:
 	int N,ET,EG,ES,AS,AD,AM,prob;
 	int minEHealth,maxEHealth,minEPower,maxEPower,minECap,maxECap;
 	int minAHealth, maxAHealth, minAPower, maxAPower, minACap, maxACap;
+	int AlienCounter, EarthCounter;
 public:
+	randGen();
 	unit* CreateUnit(int timestep,int B,int type=1);
 	void AssignGenerated(int timestep);
 	void setGame(Game* g);

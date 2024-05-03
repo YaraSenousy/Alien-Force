@@ -3,8 +3,6 @@
 
 void EarthArmy::addUnit(unit* u)
 {
-	u->setID(EarthCounter);
-	EarthCounter++;
 	if (u->getType() == "ES") {
 		ES.enqueue(static_cast<EarthSolider*>(u));
 	}

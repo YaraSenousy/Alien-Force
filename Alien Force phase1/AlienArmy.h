@@ -9,14 +9,10 @@
 class AlienArmy
 {
 private:
-	int AlienCounter;
 	LinkedQueue<AlienSolider*> AS;
 	Dequeue AD;
 	MonsterArray AM;
 public:
-	AlienArmy() {
-		AlienCounter = 2000;
-	}
 	void addUnit(unit* u);
 	void print();
 	LinkedQueue<AlienSolider*> &getASlist();

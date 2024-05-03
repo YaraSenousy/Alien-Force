@@ -1,12 +1,13 @@
 #include "unit.h"
 
-unit::unit(string t, int tj, int h, int p, int ac)
+unit::unit(string t, int tj, int h, int p, int ac, Game* g)
 {
 	type = t;
 	Tj = tj;
 	setHealth(h);
 	power = p;
 	attack_cap = ac;
+	TheGame = g;
 }
 
 string unit::getType()
@@ -37,6 +38,11 @@ void unit::setHealth(int h)
 void unit::setTimeDead(int td)
 {
 	Td = td;
+}
+
+void unit::setTimeAttack(int ta)
+{
+	Ta = ta;
 }
 
 int unit::getHealth()
