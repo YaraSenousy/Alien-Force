@@ -43,3 +43,32 @@ priQueue<EarthGunnery*> &EarthArmy::getEGlist()
 {
 	return EG;
 }
+
+void EarthArmy::earth_attack(LinkedQueue<unit*>& es, LinkedQueue<unit*>& et, LinkedQueue<unit*>& eg, int ts)
+{
+	EarthSolider* es_attack;
+	//pick a soldier to attack
+	if (ES.peek(es_attack)) {
+		es_attack->attack(es, ts);
+		//if it is the first time to attack set Ta with time stamp
+		if (es_attack->getTimeAttack() == -1)
+			es_attack->setTimeAttack(ts);
+	}
+	EarthGunnery* eg_attack;
+	int pri;
+	//pick a gunnary to attack
+	if (EG.peek(eg_attack,pri)) {
+		eg_attack->attack(eg, ts);
+		//if it is the first time to attack set Ta with time stamp
+		if (eg_attack->getTimeAttack() == -1)
+			eg_attack->setTimeAttack(ts);
+	}
+	EarthTank* et_attack;
+	//pick a tank to attack
+	if (ET.peek(et_attack)) {
+		et_attack->attack(et, ts);
+		//if it is the first time to attack set Ta with time stamp
+		if (et_attack->getTimeAttack() == -1)
+			et_attack->setTimeAttack(ts);
+	}
+}
