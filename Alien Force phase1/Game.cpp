@@ -140,9 +140,11 @@ void Game::SaveToFile(string filename,string result)
     //calculate total destructed earth units
     int totalEarthDestructed=ESK+ETK+EGK;
     //calculate averages for earth army
-    AVGEDf /= totalEarthDestructed;
-    AVGEDd /= totalEarthDestructed;
-    AVGEDb /= totalEarthDestructed;
+    if (totalEarthDestructed != 0) {
+        AVGEDf /= totalEarthDestructed;
+        AVGEDd /= totalEarthDestructed;
+        AVGEDb /= totalEarthDestructed;
+    }
     //total units of each type 
     int totalES, totalET, totalEG;
     totalES = ESK + earth_army.getESlist().getCount();
@@ -172,9 +174,11 @@ void Game::SaveToFile(string filename,string result)
     //calculate total destructed alien units
     int totalAlienDestructed = ASK + ADK + AMK;
     //calculate averages for alien army
-    AVGADf /= totalAlienDestructed;
-    AVGADd /= totalAlienDestructed;
-    AVGADb /= totalAlienDestructed;
+    if (totalAlienDestructed != 0) {
+        AVGADf /= totalAlienDestructed;
+        AVGADd /= totalAlienDestructed;
+        AVGADb /= totalAlienDestructed;
+    }
     //total units of each type 
     int totalAS, totalAD, totalAM;
     totalAS = ASK + alien_army.getASlist().getCount();
@@ -217,4 +221,5 @@ bool Game::killed(unit* dead)
         ADK++;
     else
         AMK++;
+    return true;
 }

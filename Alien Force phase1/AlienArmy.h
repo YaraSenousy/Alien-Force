@@ -18,5 +18,6 @@ public:
 	LinkedQueue<AlienSolider*> &getASlist();
 	Dequeue &getADlist();
 	MonsterArray &getAMlist();
+	void alien_attack(LinkedQueue<unit*>& as, LinkedQueue<unit*>& ad, LinkedQueue<unit*>& am, int ts);
 };
 

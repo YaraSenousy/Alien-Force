@@ -4,6 +4,8 @@ unit::unit(string t, int tj, int h, int p, int ac, Game* g)
 {
 	type = t;
 	Tj = tj;
+	Ta = -1;
+	Td = -1;
 	setHealth(h);
 	power = p;
 	attack_cap = ac;

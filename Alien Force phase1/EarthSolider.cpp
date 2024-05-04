@@ -1,6 +1,6 @@
 #include "EarthSolider.h"
-
-bool EarthSolider::attack(LinkedQueue<unit*> templist)
+#include"Game.h"
+bool EarthSolider::attack(LinkedQueue<unit*>& templist,int ts)
 {
 	//templist is the list to be returned 
 	//tlist is the templist used by the function
@@ -24,8 +24,10 @@ bool EarthSolider::attack(LinkedQueue<unit*> templist)
 			int damage = (power * (health / 100)) / sqrt(as->getHealth());
 			as->setHealth(as->getHealth() - damage);
 			templist.enqueue(as);
-			if (as->getHealth() <= 0)
+			if (as->getHealth() <= 0) {
+				as->setTimeDead(ts);
 				TheGame->killed(as);
+			}
 			else
 				tlist.enqueue(as);
 		}
@@ -39,8 +41,10 @@ bool EarthSolider::attack(LinkedQueue<unit*> templist)
 			int damage = (power * (health / 100)) / sqrt(as->getHealth());
 			as->setHealth(as->getHealth() - damage);
 			templist.enqueue(as);
-			if (as->getHealth() <= 0)
+			if (as->getHealth() <= 0) {
+				as->setTimeDead(ts);
 				TheGame->killed(as);
+			}
 			else
 				tlist.enqueue(as);
 		}

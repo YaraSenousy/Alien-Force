@@ -2,8 +2,10 @@
 #include <string.h>
 #include <iostream>
 #include "LinkedQueue.h"
-#include "Game.h"
+
 using namespace std;
+
+class Game;
 
 class unit
 {
@@ -32,7 +34,7 @@ public:
 	int getTimeJoined();
 	int getTimeDead();
 	int getTimeAttack();
-	virtual bool attack(LinkedQueue<unit*>) = 0;
+	virtual bool attack(LinkedQueue<unit*>&,int ts) = 0;
 };
 
 inline ostream& operator<<(ostream& out, unit* u) {

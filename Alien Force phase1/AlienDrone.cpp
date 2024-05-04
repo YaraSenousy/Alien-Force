@@ -1,6 +1,6 @@
 #include "AlienDrone.h"
-
-bool AlienDrone::attack(LinkedQueue<unit*>)
+#include "Game.h"
+bool AlienDrone::attack(LinkedQueue<unit*>& templist,int ts)
 {
 	//assuming function is only called if count >=2
 	//get pointers to both lists
@@ -23,7 +23,6 @@ bool AlienDrone::attack(LinkedQueue<unit*>)
 	//initialise pointers and lists to be used
 	EarthTank* et = nullptr;
 	EarthGunnery* eg = nullptr;
-	LinkedQueue<unit*> templist;
 	ArrayStack<EarthTank*> tempETlist;
 	priQueue<EarthGunnery*> tempEGlist;
 
@@ -50,6 +49,7 @@ bool AlienDrone::attack(LinkedQueue<unit*>)
 		et->setHealth(et->getHealth() - damageET);
 		templist.enqueue(et);
 		if (et->getHealth() <= 0) {
+			et->setTimeDead(ts);
 			TheGame->killed(et);
 		}
 		else {
@@ -66,6 +66,7 @@ bool AlienDrone::attack(LinkedQueue<unit*>)
 		eg->setHealth(eg->getHealth() - damageEG);
 		templist.enqueue(eg);
 		if (eg->getHealth() <= 0) {
+			eg->setTimeDead(ts);
 			TheGame->killed(eg);
 		}
 		else {
@@ -82,6 +83,7 @@ bool AlienDrone::attack(LinkedQueue<unit*>)
 			et->setHealth(et->getHealth() - damageET);
 			templist.enqueue(et);
 			if (et->getHealth() <= 0) {
+				et->setTimeDead(ts);
 				TheGame->killed(et);
 			}
 			else {
@@ -94,6 +96,7 @@ bool AlienDrone::attack(LinkedQueue<unit*>)
 			eg->setHealth(eg->getHealth() - damageEG);
 			templist.enqueue(eg);
 			if (eg->getHealth() <= 0) {
+				eg->setTimeDead(ts);
 				TheGame->killed(eg);
 			}
 			else {

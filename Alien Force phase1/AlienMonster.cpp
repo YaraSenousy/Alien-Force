@@ -1,6 +1,6 @@
 #include "AlienMonster.h"
-
-bool AlienMonster::attack(LinkedQueue<unit*>)
+#include "Game.h"
+bool AlienMonster::attack(LinkedQueue<unit*>&templist ,int ts)
 {
 	//get pointers to both lists
 	ArrayStack<EarthTank*> listET= TheGame->getEarthArmy()->getETlist();
@@ -22,7 +22,6 @@ bool AlienMonster::attack(LinkedQueue<unit*>)
 	//initialise pointers and lists to be used
 	EarthTank* et = nullptr;
 	EarthSolider* es = nullptr;
-	LinkedQueue<unit*> templist;
 	ArrayStack<EarthTank*> tempETlist;
 	LinkedQueue<EarthSolider*> tempESlist;
 
@@ -50,6 +49,7 @@ bool AlienMonster::attack(LinkedQueue<unit*>)
 		templist.enqueue(et);
 		if (et->getHealth() <= 0) {
 			TheGame->killed(et);
+			et->setTimeDead(ts);
 		}
 		else {
 			tempETlist.push(et);
@@ -65,6 +65,7 @@ bool AlienMonster::attack(LinkedQueue<unit*>)
 		templist.enqueue(es);
 		if (es->getHealth() <= 0) {
 			TheGame->killed(es);
+			es->setTimeDead(ts);
 		}
 		else {
 			tempESlist.enqueue(es);
@@ -80,6 +81,7 @@ bool AlienMonster::attack(LinkedQueue<unit*>)
 			et->setHealth(et->getHealth() - damageET);
 			templist.enqueue(et);
 			if (et->getHealth() <= 0) {
+				et->setTimeDead(ts);
 				TheGame->killed(et);
 			}
 			else {
@@ -92,6 +94,7 @@ bool AlienMonster::attack(LinkedQueue<unit*>)
 			es->setHealth(es->getHealth() - damageES);
 			templist.enqueue(es);
 			if (es->getHealth() <= 0) {
+				es->setTimeDead(ts);
 				TheGame->killed(es);
 			}
 			else {

@@ -62,4 +62,5 @@ void Game::testcode()
 		cout << "Press Enter to continue..." << endl;
 		cin.get();
 	}
+	//SaveToFile("output.txt", "draw");
 }
