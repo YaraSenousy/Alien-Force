@@ -1,5 +1,5 @@
 #include "EarthSolider.h"
-
+#include"Game.h"
 bool EarthSolider::attack(LinkedQueue<unit*> templist)
 {
 	//templist is the list to be returned 

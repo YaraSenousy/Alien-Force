@@ -1,5 +1,5 @@
 #include "AlienMonster.h"
-
+#include "Game.h"
 bool AlienMonster::attack(LinkedQueue<unit*>)
 {
 	//get pointers to both lists

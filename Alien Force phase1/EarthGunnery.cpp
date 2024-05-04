@@ -1,6 +1,6 @@
 #include "EarthGunnery.h"
 #include <cmath>
-
+#include "Game.h"
 bool EarthGunnery::attack(LinkedQueue<unit*> attacked)
 {
 	//getting the monsters and drones lists (by reference) to attack them

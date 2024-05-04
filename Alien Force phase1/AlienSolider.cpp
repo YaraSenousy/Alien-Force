@@ -1,5 +1,5 @@
 #include "AlienSolider.h"
-
+#include "Game.h"
 bool AlienSolider::attack(LinkedQueue<unit*> templist)
 {
 	//templist is the list to be returned 

@@ -217,4 +217,5 @@ bool Game::killed(unit* dead)
         ADK++;
     else
         AMK++;
+    return true;
 }

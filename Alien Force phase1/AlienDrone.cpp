@@ -1,5 +1,5 @@
 #include "AlienDrone.h"
-
+#include "Game.h"
 bool AlienDrone::attack(LinkedQueue<unit*>)
 {
 	//assuming function is only called if count >=2

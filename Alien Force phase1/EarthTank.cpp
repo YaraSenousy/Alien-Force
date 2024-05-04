@@ -1,7 +1,7 @@
 
 #include "EarthTank.h"
 #include "cmath"
-
+#include "Game.h"
 bool EarthTank::attackAS = false;
 
 bool EarthTank::attack(LinkedQueue<unit*> attacked)

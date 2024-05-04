@@ -2,8 +2,10 @@
 #include <string.h>
 #include <iostream>
 #include "LinkedQueue.h"
-#include "Game.h"
+
 using namespace std;
+
+class Game;
 
 class unit
 {
