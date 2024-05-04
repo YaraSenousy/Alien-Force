@@ -1,6 +1,6 @@
 #include "AlienSolider.h"
 #include "Game.h"
-bool AlienSolider::attack(LinkedQueue<unit*> templist)
+bool AlienSolider::attack(LinkedQueue<unit*> &templist,int ts)
 {
 	//templist is the list to be returned 
 	//tlist is the templist used by the function
@@ -24,8 +24,10 @@ bool AlienSolider::attack(LinkedQueue<unit*> templist)
 			int damage = (power * (health / 100)) / sqrt(es->getHealth());
 			es->setHealth(es->getHealth() - damage);
 			templist.enqueue(es);
-			if (es->getHealth() <= 0)
+			if (es->getHealth() <= 0) {
+				es->setTimeDead(ts);
 				TheGame->killed(es);
+			}
 			else
 				tlist.enqueue(es);
 		}
@@ -39,8 +41,10 @@ bool AlienSolider::attack(LinkedQueue<unit*> templist)
 			int damage = (power * (health / 100)) / sqrt(es->getHealth());
 			es->setHealth(es->getHealth() - damage);
 			templist.enqueue(es);
-			if (es->getHealth() <= 0)
+			if (es->getHealth() <= 0) {
+				es->setTimeDead(ts);
 				TheGame->killed(es);
+			}
 			else
 				tlist.enqueue(es);
 		}

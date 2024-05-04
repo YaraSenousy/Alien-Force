@@ -4,7 +4,7 @@
 #include "Game.h"
 bool EarthTank::attackAS = false;
 
-bool EarthTank::attack(LinkedQueue<unit*> attacked)
+bool EarthTank::attack(LinkedQueue<unit*>& attacked, int ts)
 {
 	// if the ES is less than 30% of AS then ET should start attacking AS for the rest of the time steps
 	if (TheGame->getEarthArmy()->getESlist().getCount() < 0.3 * TheGame->getAlienArmy()->getASlist().getCount())
@@ -63,8 +63,10 @@ bool EarthTank::attack(LinkedQueue<unit*> attacked)
 		am->setHealth(health2 - damage);
 		attacked.enqueue(am); //store all attacked AM to return to game
 		//if the monster is killed added it to killed list
-		if ((health2 - damage) <= 0)
+		if ((health2 - damage) <= 0) {
+			am->setTimeDead(ts);
 			TheGame->killed(am);
+		}
 		//else added it to temp list
 		else
 			temp.enqueue(am);
@@ -78,8 +80,10 @@ bool EarthTank::attack(LinkedQueue<unit*> attacked)
 		as->setHealth(health2 - damage);
 		attacked.enqueue(as); //store all attacked AS to return to game
 		//if the soldier is killed added it to killed list
-		if ((health2 - damage) <= 0)
+		if ((health2 - damage) <= 0) {
+			as->setTimeDead(ts);
 			TheGame->killed(as);
+		}
 		//else added it to temp list
 		else
 			temp.enqueue(as);

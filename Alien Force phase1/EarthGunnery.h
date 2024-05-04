@@ -4,6 +4,6 @@ class EarthGunnery : public unit
 {
 public:
 	EarthGunnery(int tj, int h, int p, int ac, Game* g) : unit("EG", tj, h, p, ac, g) {}
-	virtual bool attack(LinkedQueue<unit*>);
+	virtual bool attack(LinkedQueue<unit*>&,int);
 };
 

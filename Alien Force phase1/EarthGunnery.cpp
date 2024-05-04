@@ -1,7 +1,7 @@
 #include "EarthGunnery.h"
 #include <cmath>
 #include "Game.h"
-bool EarthGunnery::attack(LinkedQueue<unit*> attacked)
+bool EarthGunnery::attack(LinkedQueue<unit*>& attacked,int ts)
 {
 	//getting the monsters and drones lists (by reference) to attack them
 	MonsterArray AM = TheGame->getAlienArmy()->getAMlist();
@@ -44,8 +44,10 @@ bool EarthGunnery::attack(LinkedQueue<unit*> attacked)
 		am->setHealth(health2 - damage);
 		attacked.enqueue(am); //store all attacked AM to return to game
 		//if the monster is killed added it to killed list
-		if ((health2 - damage) <= 0)
+		if ((health2 - damage) <= 0) {
+			am->setTimeDead(ts);
 			TheGame->killed(am);
+		}
 		//else added it to temp list
 		else
 			temp_AM.enqueue(am);
@@ -63,8 +65,10 @@ bool EarthGunnery::attack(LinkedQueue<unit*> attacked)
 		ad->setHealth(health2 - damage);
 		attacked.enqueue(ad); //store all attacked AD to return to game
 		//if the drone is killed added it to killed list
-		if ((health2 - damage) <= 0)
+		if ((health2 - damage) <= 0) {
+			ad->setTimeDead(ts);
 			TheGame->killed(ad);
+		}
 		//else added it to temp list for the AD
 		else if (i % 2 == 0)
 			temp_AD.enqueue(ad);
