@@ -14,7 +14,7 @@ bool EarthSolider::attack(LinkedQueue<unit*>& templist,int ts)
 		return false;
 
 	AlienSolider* as = nullptr; //alien solider being attacked
-	unit* astemp = nullptr; //alien solider being attacked, different type when attacking from tlist
+	unit** astemp = nullptr; //alien solider being attacked, different type when attacking from tlist
 
 	//if number of alien soliders is greater than or equal to attack capacity
 	//earth solider can attack with full capacity

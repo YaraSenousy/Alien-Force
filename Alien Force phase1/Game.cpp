@@ -331,7 +331,7 @@ void Game::simulate()
     }
     
     //creating output file
-    //SaveToFile("output.txt", earth_status);
+    SaveToFile("output.txt", earth_status);
 
     //rest of the output of silent mode
     if (interactive == 1) {
