@@ -304,11 +304,6 @@ void Game::SaveToFile(string filename,string result)
         OutputFile << (AVGADd / AVGADb) * 100 << "%" << endl;
     else
         OutputFile << "0%" << endl;
-
-    OutputFile << totalEarthUnits << endl;
-    OutputFile << totalEarthDestructed << endl;
-    OutputFile << totalAlienUnits << endl;
-    OutputFile << totalAlienDestructed << endl;
 }
 
 bool Game::killed(unit* dead)
