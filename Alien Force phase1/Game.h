@@ -25,5 +25,6 @@ public:
 	void SaveToFile(string filename,string result);
 	void testcode();
 	bool killed(unit*); //add unit to killed list
+	void simulate();
 };
 

@@ -223,3 +223,37 @@ bool Game::killed(unit* dead)
         AMK++;
     return true;
 }
+
+void Game::simulate()
+{
+    srand((int)time(0));
+    LoadFromFile("input.txt");
+    bool endgame = false;
+    int ts = 1; //time step
+    int interactive;
+    cout << "Enter 1 for silent mode or 2 interactive mode" << endl;
+    cin >> interactive;
+    //validating the chosen mode
+    while (interactive != 1 && interactive != 2) {
+        cout << "invalid choice" << endl;
+        cout << "Enter 1 for silent mode or 2 interactive mode" << endl;
+        cin >> interactive;
+    }
+
+    while (!endgame) {
+        //generate earth and army unit
+        RandGen.AssignGenerated(ts);
+        LinkedQueue<unit*> es, et, eg; //lists of the alien units attacked by earth army
+        //earth army attack alien army
+        earth_army.earth_attack(es, et, eg, ts);
+        LinkedQueue<unit*> as_attacked, ad_attacked, am_attacked; //lists of the earth units attacked by alien army
+        int as, ad1,ad2, am; //ids of attacking alien units
+        //alien army attack earth army
+        alien_army.alien_attack(as, ad1, ad2, am, as_attacked, ad_attacked, am_attacked, ts);
+        //check for a winner
+        if (ts > 40) {
+        }
+        //increment the time step
+        ts++;
+    }
+}
