@@ -64,6 +64,7 @@ void AlienArmy::alien_attack(int& as, int& ad1,int& ad2, int& am, LinkedQueue<un
 			ad2_attack->attack(ad_attacked, ts); // second drone attacks
 
 			ad1 = ad1_attack->getID(); //send the id of attacking AD to game
+			ad2 = ad2_attack->getID(); 
 		}
 	}
 	AlienMonster* am_attack;
