@@ -201,15 +201,40 @@ void Game::SaveToFile(string filename,string result)
     OutputFile << "Total earth soliders: " << totalES << endl;
     OutputFile << "Total earth tanks: " << totalET << endl;
     OutputFile << "Total earth gunnery: " << totalEG << endl;
-    OutputFile << "Percentage of destructed earth soliders relative to total soliders: " << (ESK / totalES) * 100 << "%" << endl;
-    OutputFile << "Percentage of destructed earth tanks relative to total tanks: " << (ETK / totalET) * 100 << "%" << endl;
-    OutputFile << "Percentage of destructed earth gunnery relative to total gunnery: " << (EGK / totalEG) * 100 <<"%"<< endl;
-    OutputFile << "Percentage of total destructed units relative to total units: " << (totalEarthDestructed / totalEarthUnits) * 100 << "%" << endl;
+    OutputFile << "Percentage of destructed earth soliders relative to total soliders: ";
+    if (totalES != 0) {
+        OutputFile << (ESK / totalES) * 100 << "%" << endl;
+    }
+    else 
+        OutputFile <<"0%" << endl;
+    OutputFile << "Percentage of destructed earth tanks relative to total tanks: ";
+    if (totalET != 0)
+        OutputFile << (ETK / totalET) * 100 << "%" << endl;
+    else
+        OutputFile << "0%" << endl;
+    OutputFile << "Percentage of destructed earth gunnery relative to total gunnery: ";
+    if (totalEG != 0)
+        OutputFile << (EGK / totalEG) * 100 << "%" << endl;
+    else
+        OutputFile << "0%" << endl;
+    OutputFile << "Percentage of total destructed units relative to total units: ";
+    if (totalEarthUnits != 0)
+        OutputFile << (totalEarthDestructed / totalEarthUnits) * 100 << "%" << endl;
+    else
+        OutputFile << "0%" << endl;
     OutputFile << "Average Delay before first being shot: " << AVGEDf << endl;
     OutputFile << "Average time to destruction after first shot: " << AVGEDd << endl;
     OutputFile << "Average battle time: " << AVGEDb << endl;
-    OutputFile << "Df/Db percentage" << (AVGEDf / AVGEDb) * 100 << endl;
-    OutputFile << "Df/Db percentage" << (AVGEDd / AVGEDb) * 100 << endl;
+    OutputFile << "Df/Db percentage: ";
+    if (AVGEDb != 0)
+        OutputFile << (AVGEDf / AVGEDb) * 100 << " %" << endl;
+    else
+        OutputFile << " 0%" << endl;
+    OutputFile << "Dd/Db percentage: ";
+    if (AVGEDb != 0)
+        OutputFile << (AVGEDd / AVGEDb) * 100 << "%" << endl;
+    else
+        OutputFile << " 0%" << endl;
     OutputFile << endl;
 
     //calculate total destructed alien units
@@ -237,15 +262,40 @@ void Game::SaveToFile(string filename,string result)
     OutputFile << "Total alien soliders: " << totalAS << endl;
     OutputFile << "Total alien drones: " << totalAD << endl;
     OutputFile << "Total alien monsters: " << totalAM << endl;
-    OutputFile << "Percentage of destructed alien soliders relative to total soliders: " << (ASK / totalAS) * 100 << "%" << endl;
-    OutputFile << "Percentage of destructed alien drones relative to total drones: " << (ADK / totalAD) * 100 << "%" << endl;
-    OutputFile << "Percentage of destructed alien monsters relative to total monsters: " << (AMK / totalEG) * 100 << "%" << endl;
-    OutputFile << "Percentage of total destructed units relative to total units: " << (totalEarthDestructed / totalAlienUnits) * 100 << "%" << endl;
+    OutputFile << "Percentage of destructed alien soliders relative to total soliders: ";
+    if (totalAS != 0) {
+        OutputFile << (ASK / totalAS) * 100 << "%" << endl;
+    }
+    else
+        OutputFile << "0%" << endl;
+    OutputFile << "Percentage of destructed alien drones relative to total drones: ";
+    if (totalAD != 0)
+        OutputFile << (ADK / totalAD) * 100 << "%" << endl;
+    else
+        OutputFile << "0%" << endl;
+    OutputFile << "Percentage of destructed alien monsters relative to total monsters: ";
+    if (totalAM != 0)
+        OutputFile << (AMK / totalAM) * 100 << "%" << endl;
+    else
+        OutputFile << "0%" << endl;
+    OutputFile << "Percentage of total destructed units relative to total units: ";
+    if (totalAlienUnits != 0)
+        OutputFile << (totalAlienDestructed / totalAlienUnits) * 100 << "%" << endl;
+    else
+        OutputFile << "0%" << endl;
     OutputFile << "Average Delay before first being shot: " << AVGADf << endl;
     OutputFile << "Average time to destruction after first shot: " << AVGADd << endl;
     OutputFile << "Average battle time: " << AVGADb << endl;
-    OutputFile << "Df/Db percentage" << (AVGADf / AVGADb) * 100 << endl;
-    OutputFile << "Df/Db percentage" << (AVGADd / AVGADb) * 100 << endl;
+    OutputFile << "Df/Db percentage: ";
+    if (AVGADb != 0)
+        OutputFile << (AVGADf / AVGADb) * 100 << "%" << endl;
+    else
+        OutputFile << "0%" << endl;
+    OutputFile << "Dd/Db percentage: ";
+    if (AVGADb != 0)
+        OutputFile << (AVGADd / AVGADb) * 100 << "%" << endl;
+    else
+        OutputFile << "0%" << endl;
 }
 
 bool Game::killed(unit* dead)
