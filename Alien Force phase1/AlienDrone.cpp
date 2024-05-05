@@ -103,6 +103,7 @@ bool AlienDrone::attack(LinkedQueue<unit*>& templist,int ts)
 				tempEGlist.enqueue(eg, pri);
 			}
 		}
+		remainingCap--;
 	}
 
 	//return alive units to their original lists

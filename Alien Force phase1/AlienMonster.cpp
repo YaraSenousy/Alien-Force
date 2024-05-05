@@ -101,6 +101,7 @@ bool AlienMonster::attack(LinkedQueue<unit*>&templist ,int ts)
 				tempESlist.enqueue(es);
 			}
 		}
+		remainingCap--;
 	}
 
 	//return alive units to their original lists

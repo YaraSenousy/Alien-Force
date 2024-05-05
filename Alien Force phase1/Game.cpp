@@ -64,6 +64,7 @@ void Game::print(int TS, int es, int et, int eg, int as, int ad1, int ad2, int a
         cout << "AD " << ad1 << " & " << ad2 << " shots ";
         ad_attacked.print();
     }
+    cout << endl;
     //print killed units
     cout << "============== Killed/Destructed Units =================" << endl;
     cout << KilledList.getCount() << " units ";
@@ -318,10 +319,13 @@ void Game::simulate()
         }
         //increment the time step
         ts++;
+     
+        cout << "Press Enter to continue..." << endl;
+        cin.get();
     }
     
     //creating output file
-    SaveToFile("output.txt", earth_status);
+    //SaveToFile("output.txt", earth_status);
 
     //rest of the output of silent mode
     if (interactive == 1) {

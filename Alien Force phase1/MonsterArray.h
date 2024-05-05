@@ -2,7 +2,7 @@
 #include "AlienMonster.h"
 class MonsterArray
 {
-	enum { MAX_SIZE = 500 };
+	enum { MAX_SIZE = 1000 };
 	AlienMonster* items[MAX_SIZE];
 	int count;
 public:

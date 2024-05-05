@@ -1,53 +1,71 @@
 Td  ID  Tj  Df  Dd  Db
--1  2000  1  -2  0  -2
--1  2006  2  -3  0  -3
--1  2001  1  -2  0  -2
--1  2005  2  -3  0  -3
--1  2004  1  -2  0  -2
--1  25  6  -7  0  -7
--1  45  11  -12  0  -12
--1  2012  3  -4  0  -4
--1  2064  19  -20  0  -20
--1  2016  4  -5  0  -5
--1  2063  19  -20  0  -20
--1  2017  4  -5  0  -5
--1  2062  19  -20  0  -20
--1  2019  4  -5  0  -5
--1  2076  23  -24  0  -24
--1  2020  6  -7  0  -7
--1  2075  23  -24  0  -24
--1  2021  6  -7  0  -7
--1  2074  22  -23  0  -23
--1  100  27  -28  0  -28
--1  119  32  -33  0  -33
--1  115  30  -31  0  -31
--1  125  35  -36  0  -36
--1  145  40  -41  0  -41
+45  2000  1  0  44  44
+45  2000  1  0  44  44
+45  2000  1  0  44  44
+45  2001  1  -2  46  44
+45  2000  1  0  44  44
+45  2001  1  -2  46  44
+45  2000  1  0  44  44
+45  2001  1  -2  46  44
+45  2000  1  0  44  44
+45  2001  1  -2  46  44
+45  2000  1  0  44  44
+45  2001  1  -2  46  44
+45  2000  1  0  44  44
+45  2001  1  -2  46  44
+45  2000  1  0  44  44
+45  2001  1  -2  46  44
+45  2000  1  0  44  44
+45  2001  1  -2  46  44
+45  2000  1  0  44  44
+45  2001  1  -2  46  44
+45  2000  1  0  44  44
+45  2001  1  -2  46  44
+45  2000  1  0  44  44
+45  2001  1  -2  46  44
+45  2000  1  0  44  44
+45  2001  1  -2  46  44
+45  2000  1  0  44  44
+45  2001  1  -2  46  44
+45  2000  1  0  44  44
+45  2001  1  -2  46  44
+45  2000  1  0  44  44
+45  2001  1  -2  46  44
+45  2000  1  0  44  44
+45  2001  1  -2  46  44
+45  2000  1  0  44  44
+45  2001  1  -2  46  44
+45  2000  1  0  44  44
+45  2001  1  -2  46  44
+45  2000  1  0  44  44
+45  2001  1  -2  46  44
+45  2000  1  0  44  44
+45  2001  1  -2  46  44
+45  2000  1  0  44  44
+45  2001  1  -2  46  44
+45  2000  1  0  44  44
+45  2001  1  -2  46  44
+45  2000  1  0  44  44
+45  2001  1  -2  46  44
+45  2000  1  0  44  44
+45  2001  1  -2  46  44
+45  2000  1  0  44  44
+45  2001  1  -2  46  44
+45  2000  1  0  44  44
+45  2001  1  -2  46  44
+45  2000  1  0  44  44
+45  2001  1  -2  46  44
 
-Battle result: draw
+Battle result: Loss
 
 Earth army statistics
-Total earth soliders: 58
+Total earth soliders: 51
 Total earth tanks: 100
-Total earth gunnery: 18
+Total earth gunnery: 14
 Percentage of destructed earth soliders relative to total soliders: 0%
 Percentage of destructed earth tanks relative to total tanks: 0%
 Percentage of destructed earth gunnery relative to total gunnery: 0%
 Percentage of total destructed units relative to total units: 0%
-Average Delay before first being shot: -188
-Average time to destruction after first shot: 0
-Average battle time: -188
-Df/Db percentage100
-Df/Db percentage0
-
-Alien army statistics
-Total alien soliders: 58
-Total alien drones: 71
-Total alien monsters: 39
-Percentage of destructed alien soliders relative to total soliders: 0%
-Percentage of destructed alien drones relative to total drones: 0%
-Percentage of destructed alien monsters relative to total monsters: 0%
-Percentage of total destructed units relative to total units: 0%
-Average Delay before first being shot: -352
+Average Delay before first being shot: 0
 Average time to destruction after first shot: 0
 Average battle time: 0
