@@ -44,12 +44,17 @@ priQueue<EarthGunnery*> &EarthArmy::getEGlist()
 	return EG;
 }
 
-void EarthArmy::earth_attack(LinkedQueue<unit*>& es, LinkedQueue<unit*>& et, LinkedQueue<unit*>& eg, int ts)
+void EarthArmy::earth_attack(int es, int et, int eg, LinkedQueue<unit*>& es_attacked, LinkedQueue<unit*>& et_attacked, LinkedQueue<unit*>& eg_attacked, int ts)
 {
+	//initialising id of unit picked to 0
+	es = 0;
+	et = 0;
+	eg = 0;
 	EarthSolider* es_attack;
 	//pick a soldier to attack
 	if (ES.peek(es_attack)) {
-		es_attack->attack(es, ts);
+		es = es_attack->getID(); // get id of solider picked
+		es_attack->attack(es_attacked, ts);
 		//if it is the first time to attack set Ta with time stamp
 		if (es_attack->getTimeAttack() == -1)
 			es_attack->setTimeAttack(ts);
@@ -58,7 +63,8 @@ void EarthArmy::earth_attack(LinkedQueue<unit*>& es, LinkedQueue<unit*>& et, Lin
 	int pri;
 	//pick a gunnary to attack
 	if (EG.peek(eg_attack,pri)) {
-		eg_attack->attack(eg, ts);
+		eg = eg_attack->getID(); //get id of gunnery picked
+		eg_attack->attack(eg_attacked, ts);
 		//if it is the first time to attack set Ta with time stamp
 		if (eg_attack->getTimeAttack() == -1)
 			eg_attack->setTimeAttack(ts);
@@ -66,7 +72,8 @@ void EarthArmy::earth_attack(LinkedQueue<unit*>& es, LinkedQueue<unit*>& et, Lin
 	EarthTank* et_attack;
 	//pick a tank to attack
 	if (ET.peek(et_attack)) {
-		et_attack->attack(et, ts);
+		et = et_attack->getID(); // get id of tank picked
+		et_attack->attack(et_attacked, ts);
 		//if it is the first time to attack set Ta with time stamp
 		if (et_attack->getTimeAttack() == -1)
 			et_attack->setTimeAttack(ts);
