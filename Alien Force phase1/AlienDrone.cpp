@@ -108,11 +108,9 @@ bool AlienDrone::attack(LinkedQueue<unit*>& templist,int ts)
 
 	//return alive units to their original lists
 	while (tempETlist.pop(et)) {
-		tempETlist.pop(et);
 		TheGame->getEarthArmy()->addUnit(et);
 	}
 	while (tempEGlist.dequeue(eg,pri)) {
-		tempEGlist.dequeue(eg,pri);
 		TheGame->getEarthArmy()->addUnit(eg);
 	}
 	return true;

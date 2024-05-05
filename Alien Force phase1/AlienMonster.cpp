@@ -106,11 +106,9 @@ bool AlienMonster::attack(LinkedQueue<unit*>&templist ,int ts)
 
 	//return alive units to their original lists
 	while (tempETlist.pop(et)) {
-		tempETlist.pop(et);
 		TheGame->getEarthArmy()->addUnit(et);
 	}
 	while (tempESlist.dequeue(es)) {
-		tempESlist.dequeue(es);
 		TheGame->getEarthArmy()->addUnit(es);
 	}
 	return true;
