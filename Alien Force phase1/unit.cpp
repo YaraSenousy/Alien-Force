@@ -1,6 +1,6 @@
 #include "unit.h"
 
-unit::unit(string t, int tj, int h, int p, int ac, Game* g)
+unit::unit(string t, int tj, int h, int p, int ac, Game*& g)
 {
 	type = t;
 	Tj = tj;

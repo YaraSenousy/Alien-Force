@@ -14,8 +14,8 @@ bool EarthTank::attack(LinkedQueue<unit*>& attacked, int ts)
 		attackAS = false;
 
 	//getting the monsters and alien soldiers (by reference) to attack them
-	MonsterArray AM = TheGame->getAlienArmy()->getAMlist();
-	LinkedQueue<AlienSolider*> AS = TheGame->getAlienArmy()->getASlist();
+	MonsterArray& AM = TheGame->getAlienArmy()->getAMlist();
+	LinkedQueue<AlienSolider*>& AS = TheGame->getAlienArmy()->getASlist();
 	//if the lists to attack are empty return false
 	if (attackAS && AM.isEmpty() && AS.isEmpty())
 		return false;

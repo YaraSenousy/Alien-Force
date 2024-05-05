@@ -43,26 +43,32 @@ void Game::print(int TS, int es, int et, int eg, int as, int ad1, int ad2, int a
     if (es != 0) {
         cout << "ES " << es << " shots ";
         es_attacked.print();
+        cout << endl;
     }
     if (et != 0) {
         cout << "ET " << et << " shots ";
         et_attacked.print();
+        cout << endl;
     }
     if (eg != 0) {
         cout << "EG " << eg << " shots ";
         eg_attacked.print();
+        cout << endl;
     }
     if (as != 0) {
         cout << "AS " << as << " shots ";
         as_attacked.print();
+        cout << endl;
     }
     if (am != 0) {
         cout << "AM " << am << " shots ";
         am_attacked.print();
+        cout << endl;
     }
     if (ad1 != 0) {
         cout << "AD " << ad1 << " & " << ad2 << " shots ";
         ad_attacked.print();
+        cout << endl;
     }
     cout << endl;
     //print killed units
@@ -316,12 +322,12 @@ void Game::simulate()
         //output of interactive mode
         if (interactive == 2) {
             print(ts, es, et, eg, as, ad1, ad2, am, es_attacked, et_attacked, eg_attacked, as_attacked, ad_attacked, am_attacked);
+            cout << "Press Enter to continue..." << endl;
+            cin.get();
         }
         //increment the time step
         ts++;
-     
-        cout << "Press Enter to continue..." << endl;
-        cin.get();
+        
     }
     
     //creating output file

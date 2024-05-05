@@ -21,7 +21,7 @@ protected:
 	int attack_cap;
 	Game* TheGame;
 public:
-	unit(string t, int tj, int h, int p, int ac, Game* g);
+	unit(string t, int tj, int h, int p, int ac, Game*& g);
 	string getType();
 	int getID();
 	void setID(int id);

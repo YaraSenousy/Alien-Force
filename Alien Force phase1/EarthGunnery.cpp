@@ -4,8 +4,8 @@
 bool EarthGunnery::attack(LinkedQueue<unit*>& attacked,int ts)
 {
 	//getting the monsters and drones lists (by reference) to attack them
-	MonsterArray AM = TheGame->getAlienArmy()->getAMlist();
-	Dequeue AD = TheGame->getAlienArmy()->getADlist();
+	MonsterArray& AM = TheGame->getAlienArmy()->getAMlist();
+	Dequeue& AD = TheGame->getAlienArmy()->getADlist();
 	//if empty return false
 	if (AD.isEmpty() && AM.isEmpty())
 		return false;

@@ -4,8 +4,8 @@ bool AlienDrone::attack(LinkedQueue<unit*>& templist,int ts)
 {
 	//assuming function is only called if count >=2
 	//get pointers to both lists
-	ArrayStack<EarthTank*> listET = TheGame->getEarthArmy()->getETlist();
-	priQueue<EarthGunnery*> listEG = TheGame->getEarthArmy()->getEGlist();
+	ArrayStack<EarthTank*>& listET = TheGame->getEarthArmy()->getETlist();
+	priQueue<EarthGunnery*>& listEG = TheGame->getEarthArmy()->getEGlist();
 
 	//return false if both lists are empty
 	if (listET.isEmpty() && listEG.isEmpty()) {
@@ -23,8 +23,8 @@ bool AlienDrone::attack(LinkedQueue<unit*>& templist,int ts)
 	//initialise pointers and lists to be used
 	EarthTank* et = nullptr;
 	EarthGunnery* eg = nullptr;
-	ArrayStack<EarthTank*> tempETlist;
-	priQueue<EarthGunnery*> tempEGlist;
+	ArrayStack<unit*> tempETlist;
+	priQueue<unit*> tempEGlist;
 
 	//initialise counter for attacks and set them with
 	//smallest bet. attack per list and units available to
@@ -70,6 +70,7 @@ bool AlienDrone::attack(LinkedQueue<unit*>& templist,int ts)
 			TheGame->killed(eg);
 		}
 		else {
+			pri = eg->getPower()* (eg->getHealth() / 100);
 			tempEGlist.enqueue(eg, pri);
 		}
 	}
@@ -100,6 +101,7 @@ bool AlienDrone::attack(LinkedQueue<unit*>& templist,int ts)
 				TheGame->killed(eg);
 			}
 			else {
+				pri = eg->getPower() * (eg->getHealth() / 100);
 				tempEGlist.enqueue(eg, pri);
 			}
 		}
@@ -107,11 +109,13 @@ bool AlienDrone::attack(LinkedQueue<unit*>& templist,int ts)
 	}
 
 	//return alive units to their original lists
-	while (tempETlist.pop(et)) {
-		TheGame->getEarthArmy()->addUnit(et);
+	unit* et_return;
+	while (tempETlist.pop(et_return)) {
+		TheGame->getEarthArmy()->addUnit(et_return);
 	}
-	while (tempEGlist.dequeue(eg,pri)) {
-		TheGame->getEarthArmy()->addUnit(eg);
+	unit* eg_return;
+	while (tempEGlist.dequeue(eg_return,pri)) {
+		TheGame->getEarthArmy()->addUnit(eg_return);
 	}
 	return true;
 

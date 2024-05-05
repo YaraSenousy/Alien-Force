@@ -7,7 +7,7 @@ bool AlienSolider::attack(LinkedQueue<unit*> &templist,int ts)
 	LinkedQueue<unit*> tlist;
 
 	//earth solider list to attack
-	LinkedQueue<EarthSolider*> ES_attacked = TheGame->getEarthArmy()->getESlist();
+	LinkedQueue<EarthSolider*>& ES_attacked = TheGame->getEarthArmy()->getESlist();
 
 	//if earth solider list is empty, cant attack
 	if (ES_attacked.isEmpty())
@@ -52,7 +52,7 @@ bool AlienSolider::attack(LinkedQueue<unit*> &templist,int ts)
 	//return alive earth soliders to earth solider list
 	//add them to templist to be returned
 	while (tlist.dequeue(estemp)) {
-		TheGame->getAlienArmy()->addUnit(estemp);
+		TheGame->getEarthArmy()->addUnit(estemp);
 	}
 	return true;
 }

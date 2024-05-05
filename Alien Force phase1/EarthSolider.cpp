@@ -7,7 +7,7 @@ bool EarthSolider::attack(LinkedQueue<unit*>& templist,int ts)
 	LinkedQueue<unit*> tlist;
 
 	//alien solider list to attack
-	LinkedQueue<AlienSolider*> AS_attacked = TheGame->getAlienArmy()->getASlist();
+	LinkedQueue<AlienSolider*> &AS_attacked = TheGame->getAlienArmy()->getASlist();
 	
 	//if alien solider list is empty, cant attack
 	if (AS_attacked.isEmpty())

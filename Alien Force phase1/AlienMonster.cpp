@@ -3,8 +3,8 @@
 bool AlienMonster::attack(LinkedQueue<unit*>&templist ,int ts)
 {
 	//get pointers to both lists
-	ArrayStack<EarthTank*> listET= TheGame->getEarthArmy()->getETlist();
-	LinkedQueue<EarthSolider*> listES =TheGame->getEarthArmy()->getESlist();
+	ArrayStack<EarthTank*>& listET= TheGame->getEarthArmy()->getETlist();
+	LinkedQueue<EarthSolider*>& listES =TheGame->getEarthArmy()->getESlist();
 
 	//return false if both lists are empty
 	if (listET.isEmpty()&&listES.isEmpty()) {
