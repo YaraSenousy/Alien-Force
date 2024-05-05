@@ -42,6 +42,9 @@ bool EarthGunnery::attack(LinkedQueue<unit*>& attacked,int ts)
 		int health2 = am->getHealth();
 		int damage = (power * health / 100) / sqrt(health2);
 		am->setHealth(health2 - damage);
+		//if it is the first time to be attacked set Ta with time stamp
+		if (am->getTimeAttack() == -1)
+			am->setTimeAttack(ts);
 		attacked.enqueue(am); //store all attacked AM to return to game
 		//if the monster is killed added it to killed list
 		if ((health2 - damage) <= 0) {
@@ -63,6 +66,9 @@ bool EarthGunnery::attack(LinkedQueue<unit*>& attacked,int ts)
 		int health2 = ad->getHealth();
 		int damage = (power * health / 100) / sqrt(health2);
 		ad->setHealth(health2 - damage);
+		//if it is the first time to be attacked set Ta with time stamp
+		if (ad->getTimeAttack() == -1)
+			ad->setTimeAttack(ts);
 		attacked.enqueue(ad); //store all attacked AD to return to game
 		//if the drone is killed added it to killed list
 		if ((health2 - damage) <= 0) {

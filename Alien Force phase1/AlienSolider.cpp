@@ -21,8 +21,11 @@ bool AlienSolider::attack(LinkedQueue<unit*> &templist,int ts)
 	if (attack_cap <= ES_attacked.getCount()) {
 		for (int i{}; i < attack_cap; i++) {
 			ES_attacked.dequeue(es);
-			int damage = (power * (health / 100)) / sqrt(es->getHealth());
+			int damage = (power * health / 100) / sqrt(es->getHealth());
 			es->setHealth(es->getHealth() - damage);
+			//if it is the first time to be attacked set Ta with time stamp
+			if (es->getTimeAttack() == -1)
+				es->setTimeAttack(ts);
 			templist.enqueue(es);
 			if (es->getHealth() <= 0) {
 				es->setTimeDead(ts);
@@ -38,8 +41,11 @@ bool AlienSolider::attack(LinkedQueue<unit*> &templist,int ts)
 		//loop to attack earth soliders from list
 		for (int i{}; i < ES_attacked.getCount(); i++) {
 			ES_attacked.dequeue(es);
-			int damage = (power * (health / 100)) / sqrt(es->getHealth());
+			int damage = (power * health / 100) / sqrt(es->getHealth());
 			es->setHealth(es->getHealth() - damage);
+			//if it is the first time to be attacked set Ta with time stamp
+			if (es->getTimeAttack() == -1)
+				es->setTimeAttack(ts);
 			templist.enqueue(es);
 			if (es->getHealth() <= 0) {
 				es->setTimeDead(ts);

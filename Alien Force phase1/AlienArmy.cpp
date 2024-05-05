@@ -54,9 +54,6 @@ void AlienArmy::alien_attack(int& as, int& ad1,int& ad2, int& am, LinkedQueue<un
 	if (AS.peek(as_attack)) {
 		if (as_attack->attack(as_attacked, ts)) { //if the alien found soldiers to attack
 			as = as_attack->getID(); //send the id of attacking AS to game
-			//if it is the first time to attack set Ta with time stamp
-			if (as_attack->getTimeAttack() == -1)
-				as_attack->setTimeAttack(ts);
 		}
 	}
 	AlienDrone* ad1_attack;
@@ -67,13 +64,6 @@ void AlienArmy::alien_attack(int& as, int& ad1,int& ad2, int& am, LinkedQueue<un
 			ad2_attack->attack(ad_attacked, ts); // second drone attacks
 
 			ad1 = ad1_attack->getID(); //send the id of attacking AD to game
-			//if it is the first time to attack set Ta with time stamp
-			if (ad1_attack->getTimeAttack() == -1)
-				ad1_attack->setTimeAttack(ts);
-
-			ad2 = ad2_attack->getID();
-			if (ad2_attack->getTimeAttack() == -1)
-				ad2_attack->setTimeAttack(ts);
 		}
 	}
 	AlienMonster* am_attack;
@@ -81,9 +71,6 @@ void AlienArmy::alien_attack(int& as, int& ad1,int& ad2, int& am, LinkedQueue<un
 	if (AM.peek(am_attack)) {
 		if (am_attack->attack(am_attacked, ts)) { //if the monster found earth units to attack
 			am = am_attack->getID(); //send the id of attacking AM to game
-			//if it is the first time to attack set Ta with time stamp
-			if (am_attack->getTimeAttack() == -1)
-				am_attack->setTimeAttack(ts);
 		}
 	}
 }

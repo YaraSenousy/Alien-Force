@@ -14,15 +14,18 @@ bool EarthSolider::attack(LinkedQueue<unit*>& templist,int ts)
 		return false;
 
 	AlienSolider* as = nullptr; //alien solider being attacked
-	unit** astemp = nullptr; //alien solider being attacked, different type when attacking from tlist
+	unit* astemp = nullptr; //alien solider being attacked, different type when attacking from tlist
 
 	//if number of alien soliders is greater than or equal to attack capacity
 	//earth solider can attack with full capacity
 	if (attack_cap<=AS_attacked.getCount()) {
 		for (int i{}; i < attack_cap; i++) {
 			AS_attacked.dequeue(as);
-			int damage = (power * (health / 100)) / sqrt(as->getHealth());
+			int damage = (power * health / 100) / sqrt(as->getHealth());
 			as->setHealth(as->getHealth() - damage);
+			//if it is the first time to be attacked set Ta with time stamp
+			if (as->getTimeAttack() == -1)
+				as->setTimeAttack(ts);
 			templist.enqueue(as);
 			if (as->getHealth() <= 0) {
 				as->setTimeDead(ts);
@@ -38,8 +41,11 @@ bool EarthSolider::attack(LinkedQueue<unit*>& templist,int ts)
 		//loop to attack alien soliders from list
 		for (int i{}; i < AS_attacked.getCount(); i++) {
 			AS_attacked.dequeue(as);
-			int damage = (power * (health / 100)) / sqrt(as->getHealth());
+			int damage = (power * health / 100) / sqrt(as->getHealth());
 			as->setHealth(as->getHealth() - damage);
+			//if it is the first time to be attacked set Ta with time stamp
+			if (as->getTimeAttack() == -1)
+				as->setTimeAttack(ts);
 			templist.enqueue(as);
 			if (as->getHealth() <= 0) {
 				as->setTimeDead(ts);

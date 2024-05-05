@@ -55,9 +55,6 @@ void EarthArmy::earth_attack(int& es, int& et, int& eg, LinkedQueue<unit*>& es_a
 	if (ES.peek(es_attack)) {
 		if (es_attack->attack(es_attacked, ts)) { //if the soldier found alien units to attack
 			es = es_attack->getID(); // get id of solider picked
-			//if it is the first time to attack set Ta with time stamp
-			if (es_attack->getTimeAttack() == -1)
-				es_attack->setTimeAttack(ts);
 		}
 	}
 	EarthGunnery* eg_attack;
@@ -66,9 +63,6 @@ void EarthArmy::earth_attack(int& es, int& et, int& eg, LinkedQueue<unit*>& es_a
 	if (EG.peek(eg_attack,pri)) {
 		if (eg_attack->attack(eg_attacked, ts)) { //if the gunnery found alien units to attack
 			eg = eg_attack->getID(); //get id of gunnery picked
-			//if it is the first time to attack set Ta with time stamp
-			if (eg_attack->getTimeAttack() == -1)
-				eg_attack->setTimeAttack(ts);
 		}
 	}
 	EarthTank* et_attack;
@@ -76,9 +70,6 @@ void EarthArmy::earth_attack(int& es, int& et, int& eg, LinkedQueue<unit*>& es_a
 	if (ET.peek(et_attack)) {
 		if (et_attack->attack(et_attacked, ts)) { //if the tank found alien units to attack
 			et = et_attack->getID(); // get id of tank picked
-			//if it is the first time to attack set Ta with time stamp
-			if (et_attack->getTimeAttack() == -1)
-				et_attack->setTimeAttack(ts);
 		}
 	}
 }

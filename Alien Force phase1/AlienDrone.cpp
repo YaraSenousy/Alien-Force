@@ -45,8 +45,11 @@ bool AlienDrone::attack(LinkedQueue<unit*>& templist,int ts)
 	//than 0 and send to templist otherwise
 	for (int i{}; i < ETcounter; i++) {
 		listET.pop(et);
-		int damageET = float(power * (health / 100)) / sqrt(et->getHealth());
+		int damageET = float(power * health / 100) / sqrt(et->getHealth());
 		et->setHealth(et->getHealth() - damageET);
+		//if it is the first time to be attacked set Ta with time stamp
+		if (et->getTimeAttack() == -1)
+			et->setTimeAttack(ts);
 		templist.enqueue(et);
 		if (et->getHealth() <= 0) {
 			et->setTimeDead(ts);
@@ -62,8 +65,11 @@ bool AlienDrone::attack(LinkedQueue<unit*>& templist,int ts)
 	//than 0 and send to templist otherwise
 	for (int i{}; i < EGcounter; i++) {
 		listEG.dequeue(eg,pri);
-		int damageEG = float(power * (health / 100)) / sqrt(eg->getHealth());
+		int damageEG = float(power * health / 100) / sqrt(eg->getHealth());
 		eg->setHealth(eg->getHealth() - damageEG);
+		//if it is the first time to be attacked set Ta with time stamp
+		if (eg->getTimeAttack() == -1)
+			eg->setTimeAttack(ts);
 		templist.enqueue(eg);
 		if (eg->getHealth() <= 0) {
 			eg->setTimeDead(ts);
@@ -80,8 +86,11 @@ bool AlienDrone::attack(LinkedQueue<unit*>& templist,int ts)
 	while (remainingCap > 0) {
 		if (!listET.isEmpty()) {
 			listET.pop(et);
-			int damageET = float(power * (health / 100)) / sqrt(et->getHealth());
+			int damageET = float(power * health / 100) / sqrt(et->getHealth());
 			et->setHealth(et->getHealth() - damageET);
+			//if it is the first time to be attacked set Ta with time stamp
+			if (et->getTimeAttack() == -1)
+				et->setTimeAttack(ts);
 			templist.enqueue(et);
 			if (et->getHealth() <= 0) {
 				et->setTimeDead(ts);
@@ -93,8 +102,11 @@ bool AlienDrone::attack(LinkedQueue<unit*>& templist,int ts)
 		}
 		else if (!listEG.isEmpty()) {
 			listEG.dequeue(eg, pri);
-			int damageEG = float(power * (health / 100)) / sqrt(eg->getHealth());
+			int damageEG = float(power * health / 100) / sqrt(eg->getHealth());
 			eg->setHealth(eg->getHealth() - damageEG);
+			//if it is the first time to be attacked set Ta with time stamp
+			if (eg->getTimeAttack() == -1)
+				eg->setTimeAttack(ts);
 			templist.enqueue(eg);
 			if (eg->getHealth() <= 0) {
 				eg->setTimeDead(ts);

@@ -59,8 +59,11 @@ bool EarthTank::attack(LinkedQueue<unit*>& attacked, int ts)
 		AlienMonster* am;
 		AM.pop(am);
 		int health2 = am->getHealth();
-		int damage = float(power * health / 100) / sqrt(health2);
+		int damage = (power * health / 100) / sqrt(health2);
 		am->setHealth(health2 - damage);
+		//if it is the first time to be attacked set Ta with time stamp
+		if (am->getTimeAttack() == -1)
+			am->setTimeAttack(ts);
 		attacked.enqueue(am); //store all attacked AM to return to game
 		//if the monster is killed added it to killed list
 		if ((health2 - damage) <= 0) {
@@ -76,8 +79,11 @@ bool EarthTank::attack(LinkedQueue<unit*>& attacked, int ts)
 		AlienSolider* as;
 		AS.dequeue(as);
 		int health2 = as->getHealth();
-		int damage = float(power * health / 100) / sqrt(health2);
+		int damage = (power * health / 100) / sqrt(health2);
 		as->setHealth(health2 - damage);
+		//if it is the first time to be attacked set Ta with time stamp
+		if (as->getTimeAttack() == -1)
+			as->setTimeAttack(ts);
 		attacked.enqueue(as); //store all attacked AS to return to game
 		//if the soldier is killed added it to killed list
 		if ((health2 - damage) <= 0) {

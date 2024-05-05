@@ -26,6 +26,7 @@ public:
 	int getID();
 	void setID(int id);
 	void setHealth(int h);
+	void setTimeJoined(int tj);
 	void setTimeDead(int td);
 	void setTimeAttack(int ta);
 	int getHealth();

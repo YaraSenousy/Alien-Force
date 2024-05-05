@@ -37,6 +37,11 @@ void unit::setHealth(int h)
 		health = h;
 }
 
+void unit::setTimeJoined(int tj=0)
+{
+		Tj = tj;
+}
+
 void unit::setTimeDead(int td)
 {
 	Td = td;
