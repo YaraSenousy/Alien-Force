@@ -63,13 +63,14 @@ void AlienArmy::alien_attack(int& as, int& ad1,int& ad2, int& am, LinkedQueue<un
 	AlienDrone*	ad2_attack;
 	//pick two drone from the front and back to attack
 	if (AD.peek(ad1_attack) && AD.peekBack(ad2_attack)) {
-		if (ad1_attack->attack(ad_attacked, ts)) { //if the drone found earth units to attack
+		if (ad1_attack->attack(ad_attacked, ts)) { //if the first drone found earth units to attack, then we consider that both of them attacked (even if the second didnt find)
+			ad2_attack->attack(ad_attacked, ts); // second drone attacks
+
 			ad1 = ad1_attack->getID(); //send the id of attacking AD to game
 			//if it is the first time to attack set Ta with time stamp
 			if (ad1_attack->getTimeAttack() == -1)
 				ad1_attack->setTimeAttack(ts);
-		}
-		if (ad2_attack->attack(ad_attacked, ts)) { //if the drone found earth units to attack
+
 			ad2 = ad2_attack->getID();
 			if (ad2_attack->getTimeAttack() == -1)
 				ad2_attack->setTimeAttack(ts);
