@@ -18,6 +18,6 @@ public:
 	LinkedQueue<EarthSolider*>& getESlist();
 	ArrayStack<EarthTank*>& getETlist();
 	priQueue<EarthGunnery*>& getEGlist();
-	void earth_attack(LinkedQueue<unit*>& es, LinkedQueue<unit*>& et, LinkedQueue<unit*>& eg, int ts);
+	void earth_attack(int es, int et, int eg, LinkedQueue<unit*>& es_attacked, LinkedQueue<unit*>& et_attacked, LinkedQueue<unit*>& eg_attacked, int ts);
 };
 
