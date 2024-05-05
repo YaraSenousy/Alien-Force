@@ -7,7 +7,7 @@ bool EarthSolider::attack(LinkedQueue<unit*>& templist,int ts)
 	LinkedQueue<unit*> tlist;
 
 	//alien solider list to attack
-	LinkedQueue<AlienSolider*> AS_attacked = TheGame->getAlienArmy()->getASlist();
+	LinkedQueue<AlienSolider*> &AS_attacked = TheGame->getAlienArmy()->getASlist();
 	
 	//if alien solider list is empty, cant attack
 	if (AS_attacked.isEmpty())
@@ -21,8 +21,11 @@ bool EarthSolider::attack(LinkedQueue<unit*>& templist,int ts)
 	if (attack_cap<=AS_attacked.getCount()) {
 		for (int i{}; i < attack_cap; i++) {
 			AS_attacked.dequeue(as);
-			int damage = (power * (health / 100)) / sqrt(as->getHealth());
+			int damage = (power * health / 100) / sqrt(as->getHealth());
 			as->setHealth(as->getHealth() - damage);
+			//if it is the first time to be attacked set Ta with time stamp
+			if (as->getTimeAttack() == -1)
+				as->setTimeAttack(ts);
 			templist.enqueue(as);
 			if (as->getHealth() <= 0) {
 				as->setTimeDead(ts);
@@ -38,8 +41,11 @@ bool EarthSolider::attack(LinkedQueue<unit*>& templist,int ts)
 		//loop to attack alien soliders from list
 		for (int i{}; i < AS_attacked.getCount(); i++) {
 			AS_attacked.dequeue(as);
-			int damage = (power * (health / 100)) / sqrt(as->getHealth());
+			int damage = (power * health / 100) / sqrt(as->getHealth());
 			as->setHealth(as->getHealth() - damage);
+			//if it is the first time to be attacked set Ta with time stamp
+			if (as->getTimeAttack() == -1)
+				as->setTimeAttack(ts);
 			templist.enqueue(as);
 			if (as->getHealth() <= 0) {
 				as->setTimeDead(ts);

@@ -21,11 +21,12 @@ protected:
 	int attack_cap;
 	Game* TheGame;
 public:
-	unit(string t, int tj, int h, int p, int ac, Game* g);
+	unit(string t, int tj, int h, int p, int ac, Game*& g);
 	string getType();
 	int getID();
 	void setID(int id);
 	void setHealth(int h);
+	void setTimeJoined(int tj);
 	void setTimeDead(int td);
 	void setTimeAttack(int ta);
 	int getHealth();

@@ -11,11 +11,11 @@ bool EarthTank::attack(LinkedQueue<unit*>& attacked, int ts)
 		attackAS = true;
 	//if ES become more than or equal 80% of AS then ET should stop attacking AS for the rest of the time steps
 	if (TheGame->getEarthArmy()->getESlist().getCount() > 0.8 * TheGame->getAlienArmy()->getASlist().getCount())
-		attackAS = true;
+		attackAS = false;
 
 	//getting the monsters and alien soldiers (by reference) to attack them
-	MonsterArray AM = TheGame->getAlienArmy()->getAMlist();
-	LinkedQueue<AlienSolider*> AS = TheGame->getAlienArmy()->getASlist();
+	MonsterArray& AM = TheGame->getAlienArmy()->getAMlist();
+	LinkedQueue<AlienSolider*>& AS = TheGame->getAlienArmy()->getASlist();
 	//if the lists to attack are empty return false
 	if (attackAS && AM.isEmpty() && AS.isEmpty())
 		return false;
@@ -61,6 +61,9 @@ bool EarthTank::attack(LinkedQueue<unit*>& attacked, int ts)
 		int health2 = am->getHealth();
 		int damage = (power * health / 100) / sqrt(health2);
 		am->setHealth(health2 - damage);
+		//if it is the first time to be attacked set Ta with time stamp
+		if (am->getTimeAttack() == -1)
+			am->setTimeAttack(ts);
 		attacked.enqueue(am); //store all attacked AM to return to game
 		//if the monster is killed added it to killed list
 		if ((health2 - damage) <= 0) {
@@ -78,6 +81,9 @@ bool EarthTank::attack(LinkedQueue<unit*>& attacked, int ts)
 		int health2 = as->getHealth();
 		int damage = (power * health / 100) / sqrt(health2);
 		as->setHealth(health2 - damage);
+		//if it is the first time to be attacked set Ta with time stamp
+		if (as->getTimeAttack() == -1)
+			as->setTimeAttack(ts);
 		attacked.enqueue(as); //store all attacked AS to return to game
 		//if the soldier is killed added it to killed list
 		if ((health2 - damage) <= 0) {

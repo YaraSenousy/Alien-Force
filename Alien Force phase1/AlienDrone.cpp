@@ -4,8 +4,8 @@ bool AlienDrone::attack(LinkedQueue<unit*>& templist,int ts)
 {
 	//assuming function is only called if count >=2
 	//get pointers to both lists
-	ArrayStack<EarthTank*> listET = TheGame->getEarthArmy()->getETlist();
-	priQueue<EarthGunnery*> listEG = TheGame->getEarthArmy()->getEGlist();
+	ArrayStack<EarthTank*>& listET = TheGame->getEarthArmy()->getETlist();
+	priQueue<EarthGunnery*>& listEG = TheGame->getEarthArmy()->getEGlist();
 
 	//return false if both lists are empty
 	if (listET.isEmpty() && listEG.isEmpty()) {
@@ -23,8 +23,8 @@ bool AlienDrone::attack(LinkedQueue<unit*>& templist,int ts)
 	//initialise pointers and lists to be used
 	EarthTank* et = nullptr;
 	EarthGunnery* eg = nullptr;
-	ArrayStack<EarthTank*> tempETlist;
-	priQueue<EarthGunnery*> tempEGlist;
+	ArrayStack<unit*> tempETlist;
+	priQueue<unit*> tempEGlist;
 
 	//initialise counter for attacks and set them with
 	//smallest bet. attack per list and units available to
@@ -43,10 +43,13 @@ bool AlienDrone::attack(LinkedQueue<unit*>& templist,int ts)
 
 	//attack Earth Tank; send to kill list if new health is less 
 	//than 0 and send to templist otherwise
-	for (int i{}; i <= ETcounter; i++) {
+	for (int i{}; i < ETcounter; i++) {
 		listET.pop(et);
-		int damageET = (power * (health / 100)) / sqrt(et->getHealth());
+		int damageET = float(power * health / 100) / sqrt(et->getHealth());
 		et->setHealth(et->getHealth() - damageET);
+		//if it is the first time to be attacked set Ta with time stamp
+		if (et->getTimeAttack() == -1)
+			et->setTimeAttack(ts);
 		templist.enqueue(et);
 		if (et->getHealth() <= 0) {
 			et->setTimeDead(ts);
@@ -60,16 +63,20 @@ bool AlienDrone::attack(LinkedQueue<unit*>& templist,int ts)
 	int pri = 0;
 	//attack Earth Gunnery; send to kill list if new health is less 
 	//than 0 and send to templist otherwise
-	for (int i{}; i <= EGcounter; i++) {
+	for (int i{}; i < EGcounter; i++) {
 		listEG.dequeue(eg,pri);
-		int damageEG = (power * (health / 100)) / sqrt(eg->getHealth());
+		int damageEG = float(power * health / 100) / sqrt(eg->getHealth());
 		eg->setHealth(eg->getHealth() - damageEG);
+		//if it is the first time to be attacked set Ta with time stamp
+		if (eg->getTimeAttack() == -1)
+			eg->setTimeAttack(ts);
 		templist.enqueue(eg);
 		if (eg->getHealth() <= 0) {
 			eg->setTimeDead(ts);
 			TheGame->killed(eg);
 		}
 		else {
+			pri = eg->getPower()* (eg->getHealth() / 100);
 			tempEGlist.enqueue(eg, pri);
 		}
 	}
@@ -79,8 +86,11 @@ bool AlienDrone::attack(LinkedQueue<unit*>& templist,int ts)
 	while (remainingCap > 0) {
 		if (!listET.isEmpty()) {
 			listET.pop(et);
-			int damageET = (power * (health / 100)) / sqrt(et->getHealth());
+			int damageET = float(power * health / 100) / sqrt(et->getHealth());
 			et->setHealth(et->getHealth() - damageET);
+			//if it is the first time to be attacked set Ta with time stamp
+			if (et->getTimeAttack() == -1)
+				et->setTimeAttack(ts);
 			templist.enqueue(et);
 			if (et->getHealth() <= 0) {
 				et->setTimeDead(ts);
@@ -92,27 +102,32 @@ bool AlienDrone::attack(LinkedQueue<unit*>& templist,int ts)
 		}
 		else if (!listEG.isEmpty()) {
 			listEG.dequeue(eg, pri);
-			int damageEG = (power * (health / 100)) / sqrt(eg->getHealth());
+			int damageEG = float(power * health / 100) / sqrt(eg->getHealth());
 			eg->setHealth(eg->getHealth() - damageEG);
+			//if it is the first time to be attacked set Ta with time stamp
+			if (eg->getTimeAttack() == -1)
+				eg->setTimeAttack(ts);
 			templist.enqueue(eg);
 			if (eg->getHealth() <= 0) {
 				eg->setTimeDead(ts);
 				TheGame->killed(eg);
 			}
 			else {
+				pri = eg->getPower() * (eg->getHealth() / 100);
 				tempEGlist.enqueue(eg, pri);
 			}
 		}
+		remainingCap--;
 	}
 
 	//return alive units to their original lists
-	while (tempETlist.pop(et)) {
-		tempETlist.pop(et);
-		TheGame->getEarthArmy()->addUnit(et);
+	unit* et_return;
+	while (tempETlist.pop(et_return)) {
+		TheGame->getEarthArmy()->addUnit(et_return);
 	}
-	while (tempEGlist.dequeue(eg,pri)) {
-		tempEGlist.dequeue(eg,pri);
-		TheGame->getEarthArmy()->addUnit(eg);
+	unit* eg_return;
+	while (tempEGlist.dequeue(eg_return,pri)) {
+		TheGame->getEarthArmy()->addUnit(eg_return);
 	}
 	return true;
 

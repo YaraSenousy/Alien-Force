@@ -50,7 +50,7 @@ unit* randGen::CreateUnit(int timestep,int B,int type)
 	return Unit;
 }
 
-void randGen::AssignGenerated(int timestep)
+void randGen::AssignGenerated(int timestep) //generate earth and army units for a given time step
 {
 	int A = 1 + (rand() % 100);
 	if (A <= prob) {

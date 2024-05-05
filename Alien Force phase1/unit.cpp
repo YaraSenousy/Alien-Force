@@ -1,6 +1,6 @@
 #include "unit.h"
 
-unit::unit(string t, int tj, int h, int p, int ac, Game* g)
+unit::unit(string t, int tj, int h, int p, int ac, Game*& g)
 {
 	type = t;
 	Tj = tj;
@@ -35,6 +35,11 @@ void unit::setHealth(int h)
 		health = 100;
 	else
 		health = h;
+}
+
+void unit::setTimeJoined(int tj=0)
+{
+		Tj = tj;
 }
 
 void unit::setTimeDead(int td)

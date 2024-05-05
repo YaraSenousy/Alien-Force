@@ -3,8 +3,8 @@
 bool AlienMonster::attack(LinkedQueue<unit*>&templist ,int ts)
 {
 	//get pointers to both lists
-	ArrayStack<EarthTank*> listET= TheGame->getEarthArmy()->getETlist();
-	LinkedQueue<EarthSolider*> listES =TheGame->getEarthArmy()->getESlist();
+	ArrayStack<EarthTank*>& listET= TheGame->getEarthArmy()->getETlist();
+	LinkedQueue<EarthSolider*>& listES =TheGame->getEarthArmy()->getESlist();
 
 	//return false if both lists are empty
 	if (listET.isEmpty()&&listES.isEmpty()) {
@@ -42,10 +42,13 @@ bool AlienMonster::attack(LinkedQueue<unit*>&templist ,int ts)
 	
 	//attack Earth Tank; send to kill list if new health is less 
 	//than 0 and send to templist otherwise
-	for (int i{}; i <= ETcounter; i++) {
+	for (int i{}; i < ETcounter; i++) {
 		listET.pop(et);
-		int damageET = (power * (health / 100)) / sqrt(et->getHealth());
+		int damageET = (power * health / 100) / sqrt(et->getHealth());
 		et->setHealth(et->getHealth() - damageET);
+		//if it is the first time to be attacked set Ta with time stamp
+		if (et->getTimeAttack() == -1)
+			et->setTimeAttack(ts);
 		templist.enqueue(et);
 		if (et->getHealth() <= 0) {
 			TheGame->killed(et);
@@ -58,10 +61,13 @@ bool AlienMonster::attack(LinkedQueue<unit*>&templist ,int ts)
 
 	//attack Earth Solider; send to kill list if new health is less 
 	//than 0 and send to templist otherwise
-	for (int i{}; i <= EScounter; i++) {
+	for (int i{}; i < EScounter; i++) {
 		listES.dequeue(es);
-		int damageES = (power * (health / 100)) / sqrt(es->getHealth());
+		int damageES = (power * health / 100) / sqrt(es->getHealth());
 		es->setHealth(es->getHealth() - damageES);
+		//if it is the first time to be attacked set Ta with time stamp
+		if (es->getTimeAttack() == -1)
+			es->setTimeAttack(ts);
 		templist.enqueue(es);
 		if (es->getHealth() <= 0) {
 			TheGame->killed(es);
@@ -77,8 +83,11 @@ bool AlienMonster::attack(LinkedQueue<unit*>&templist ,int ts)
 	while (remainingCap > 0) {
 		if (!listET.isEmpty()) {
 			listET.pop(et);
-			int damageET = (power * (health / 100)) / sqrt(et->getHealth());
+			int damageET = (power * health / 100) / sqrt(et->getHealth());
 			et->setHealth(et->getHealth() - damageET);
+			//if it is the first time to be attacked set Ta with time stamp
+			if (et->getTimeAttack() == -1)
+				et->setTimeAttack(ts);
 			templist.enqueue(et);
 			if (et->getHealth() <= 0) {
 				et->setTimeDead(ts);
@@ -90,8 +99,11 @@ bool AlienMonster::attack(LinkedQueue<unit*>&templist ,int ts)
 		}
 		else if (!listES.isEmpty()) {
 			listES.dequeue(es);
-			int damageES = (power * (health / 100)) / sqrt(es->getHealth());
+			int damageES = float(power * health / 100) / sqrt(es->getHealth());
 			es->setHealth(es->getHealth() - damageES);
+			//if it is the first time to be attacked set Ta with time stamp
+			if (es->getTimeAttack() == -1)
+				es->setTimeAttack(ts);
 			templist.enqueue(es);
 			if (es->getHealth() <= 0) {
 				es->setTimeDead(ts);
@@ -101,15 +113,14 @@ bool AlienMonster::attack(LinkedQueue<unit*>&templist ,int ts)
 				tempESlist.enqueue(es);
 			}
 		}
+		remainingCap--;
 	}
 
 	//return alive units to their original lists
 	while (tempETlist.pop(et)) {
-		tempETlist.pop(et);
 		TheGame->getEarthArmy()->addUnit(et);
 	}
 	while (tempESlist.dequeue(es)) {
-		tempESlist.dequeue(es);
 		TheGame->getEarthArmy()->addUnit(es);
 	}
 	return true;
