@@ -44,7 +44,7 @@ priQueue<EarthGunnery*> &EarthArmy::getEGlist()
 	return EG;
 }
 
-void EarthArmy::earth_attack(int es, int et, int eg, LinkedQueue<unit*>& es_attacked, LinkedQueue<unit*>& et_attacked, LinkedQueue<unit*>& eg_attacked, int ts)
+void EarthArmy::earth_attack(int& es, int& et, int& eg, LinkedQueue<unit*>& es_attacked, LinkedQueue<unit*>& et_attacked, LinkedQueue<unit*>& eg_attacked, int ts)
 {
 	//initialising id of unit picked to 0
 	es = 0;
@@ -53,29 +53,32 @@ void EarthArmy::earth_attack(int es, int et, int eg, LinkedQueue<unit*>& es_atta
 	EarthSolider* es_attack;
 	//pick a soldier to attack
 	if (ES.peek(es_attack)) {
-		es = es_attack->getID(); // get id of solider picked
-		es_attack->attack(es_attacked, ts);
-		//if it is the first time to attack set Ta with time stamp
-		if (es_attack->getTimeAttack() == -1)
-			es_attack->setTimeAttack(ts);
+		if (es_attack->attack(es_attacked, ts)) { //if the soldier found alien units to attack
+			es = es_attack->getID(); // get id of solider picked
+			//if it is the first time to attack set Ta with time stamp
+			if (es_attack->getTimeAttack() == -1)
+				es_attack->setTimeAttack(ts);
+		}
 	}
 	EarthGunnery* eg_attack;
 	int pri;
-	//pick a gunnary to attack
+	//pick a gunnery to attack
 	if (EG.peek(eg_attack,pri)) {
-		eg = eg_attack->getID(); //get id of gunnery picked
-		eg_attack->attack(eg_attacked, ts);
-		//if it is the first time to attack set Ta with time stamp
-		if (eg_attack->getTimeAttack() == -1)
-			eg_attack->setTimeAttack(ts);
+		if (eg_attack->attack(eg_attacked, ts)) { //if the gunnery found alien units to attack
+			eg = eg_attack->getID(); //get id of gunnery picked
+			//if it is the first time to attack set Ta with time stamp
+			if (eg_attack->getTimeAttack() == -1)
+				eg_attack->setTimeAttack(ts);
+		}
 	}
 	EarthTank* et_attack;
 	//pick a tank to attack
 	if (ET.peek(et_attack)) {
-		et = et_attack->getID(); // get id of tank picked
-		et_attack->attack(et_attacked, ts);
-		//if it is the first time to attack set Ta with time stamp
-		if (et_attack->getTimeAttack() == -1)
-			et_attack->setTimeAttack(ts);
+		if (et_attack->attack(et_attacked, ts)) { //if the tank found alien units to attack
+			et = et_attack->getID(); // get id of tank picked
+			//if it is the first time to attack set Ta with time stamp
+			if (et_attack->getTimeAttack() == -1)
+				et_attack->setTimeAttack(ts);
+		}
 	}
 }

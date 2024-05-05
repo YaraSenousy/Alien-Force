@@ -20,11 +20,12 @@ public:
 	EarthArmy* getEarthArmy();
 	AlienArmy* getAlienArmy();
 	randGen* getRandGen();
-	void print(int TS);
+	void print(int TS,int es,int et,int eg,int as,int ad1,int ad2,int am, LinkedQueue<unit*>& es_attacked, LinkedQueue<unit*>& et_attacked, LinkedQueue<unit*>& eg_attacked,LinkedQueue<unit*>& as_attacked, LinkedQueue<unit*>& ad_attacked, LinkedQueue<unit*>& am_attacked);
 	void LoadFromFile(string filename);
 	void SaveToFile(string filename,string result);
 	void testcode();
 	bool killed(unit*); //add unit to killed list
 	void simulate();
+	string status(bool& endgame,bool);
 };
 

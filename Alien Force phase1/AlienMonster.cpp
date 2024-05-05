@@ -42,9 +42,9 @@ bool AlienMonster::attack(LinkedQueue<unit*>&templist ,int ts)
 	
 	//attack Earth Tank; send to kill list if new health is less 
 	//than 0 and send to templist otherwise
-	for (int i{}; i <= ETcounter; i++) {
+	for (int i{}; i < ETcounter; i++) {
 		listET.pop(et);
-		int damageET = (power * (health / 100)) / sqrt(et->getHealth());
+		int damageET = float(power * (health / 100)) / sqrt(et->getHealth());
 		et->setHealth(et->getHealth() - damageET);
 		templist.enqueue(et);
 		if (et->getHealth() <= 0) {
@@ -58,9 +58,9 @@ bool AlienMonster::attack(LinkedQueue<unit*>&templist ,int ts)
 
 	//attack Earth Solider; send to kill list if new health is less 
 	//than 0 and send to templist otherwise
-	for (int i{}; i <= EScounter; i++) {
+	for (int i{}; i < EScounter; i++) {
 		listES.dequeue(es);
-		int damageES = (power * (health / 100)) / sqrt(es->getHealth());
+		int damageES = float(power * (health / 100)) / sqrt(es->getHealth());
 		es->setHealth(es->getHealth() - damageES);
 		templist.enqueue(es);
 		if (es->getHealth() <= 0) {
@@ -77,7 +77,7 @@ bool AlienMonster::attack(LinkedQueue<unit*>&templist ,int ts)
 	while (remainingCap > 0) {
 		if (!listET.isEmpty()) {
 			listET.pop(et);
-			int damageET = (power * (health / 100)) / sqrt(et->getHealth());
+			int damageET = float(power * (health / 100)) / sqrt(et->getHealth());
 			et->setHealth(et->getHealth() - damageET);
 			templist.enqueue(et);
 			if (et->getHealth() <= 0) {
@@ -90,7 +90,7 @@ bool AlienMonster::attack(LinkedQueue<unit*>&templist ,int ts)
 		}
 		else if (!listES.isEmpty()) {
 			listES.dequeue(es);
-			int damageES = (power * (health / 100)) / sqrt(es->getHealth());
+			int damageES = float(power * (health / 100)) / sqrt(es->getHealth());
 			es->setHealth(es->getHealth() - damageES);
 			templist.enqueue(es);
 			if (es->getHealth() <= 0) {

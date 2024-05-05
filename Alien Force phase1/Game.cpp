@@ -27,7 +27,7 @@ randGen* Game::getRandGen()
     return &RandGen;
 }
 
-void Game::print(int TS)
+void Game::print(int TS, int es, int et, int eg, int as, int ad1, int ad2, int am, LinkedQueue<unit*>& es_attacked, LinkedQueue<unit*>& et_attacked, LinkedQueue<unit*>& eg_attacked, LinkedQueue<unit*>& as_attacked, LinkedQueue<unit*>& ad_attacked, LinkedQueue<unit*>& am_attacked)
 {
     cout << "Current Timestep " << TS << endl;
     //print alive earth units
@@ -36,6 +36,21 @@ void Game::print(int TS)
     //print alive alien units
     alien_army.print();
     cout << endl;
+    //print fighting
+    cout << "============== Units fighting at current step =================" << endl;
+    cout << "ES " << es << " shots ";
+    es_attacked.print();
+    cout << "ET " << et << " shots ";
+    et_attacked.print();
+    cout << "EG " << eg << " shots ";
+    eg_attacked.print();
+    cout << "AS " << as << " shots ";
+    as_attacked.print();
+    cout << "AM " << am << " shots ";
+    am_attacked.print();
+    cout << "AD " << ad1<<" & " << ad2<<" shots ";
+    ad_attacked.print();
+    //print killed units
     cout << "============== Killed/Destructed Units =================" << endl;
     cout << KilledList.getCount() << " units ";
     KilledList.print();
@@ -145,6 +160,11 @@ void Game::SaveToFile(string filename,string result)
         AVGEDd /= totalEarthDestructed;
         AVGEDb /= totalEarthDestructed;
     }
+    else {
+        AVGEDf = 0;
+        AVGEDd = 0;
+        AVGEDb = 0;
+    }
     //total units of each type 
     int totalES, totalET, totalEG;
     totalES = ESK + earth_army.getESlist().getCount();
@@ -178,6 +198,11 @@ void Game::SaveToFile(string filename,string result)
         AVGADf /= totalAlienDestructed;
         AVGADd /= totalAlienDestructed;
         AVGADb /= totalAlienDestructed;
+    }
+    else {
+        AVGADf = 0;
+        AVGADd = 0;
+        AVGADb = 0;
     }
     //total units of each type 
     int totalAS, totalAD, totalAM;
@@ -228,7 +253,8 @@ void Game::simulate()
 {
     srand((int)time(0));
     LoadFromFile("input.txt");
-    bool endgame = false;
+    bool endgame = false; //indicates when the game ends
+    string earth_status; //indicates who wins
     int ts = 1; //time step
     int interactive;
     cout << "Enter 1 for silent mode or 2 interactive mode" << endl;
@@ -239,21 +265,85 @@ void Game::simulate()
         cout << "Enter 1 for silent mode or 2 interactive mode" << endl;
         cin >> interactive;
     }
+    //input a limit for the time steps
+    int limit = 0;
+    cout << "Enter a limit for the time steps, Must be greater than 40" << endl;
+    cin >> limit;
+    //validate the limit
+    while (limit < 40) {
+        cout << "Invalid limit" << endl;
+        cout << "Enter a limit for the time steps, Must be greater than 40" << endl;
+        cin >> limit;
+    }
+    //output of silent mode
+    if (interactive == 1) {
+        cout << "Silent Mode" << endl;
+        cout << "Simulation Starts..." << endl;
+    }
 
     while (!endgame) {
         //generate earth and army unit
         RandGen.AssignGenerated(ts);
-        LinkedQueue<unit*> es, et, eg; //lists of the alien units attacked by earth army
+        LinkedQueue<unit*> es_attacked, et_attacked, eg_attacked; //lists of the alien units attacked by earth army
+        int es, et, eg; //ids of attacking earth units
         //earth army attack alien army
-        earth_army.earth_attack(es, et, eg, ts);
+        earth_army.earth_attack(es, et, eg,es_attacked,et_attacked,eg_attacked, ts);
         LinkedQueue<unit*> as_attacked, ad_attacked, am_attacked; //lists of the earth units attacked by alien army
         int as, ad1,ad2, am; //ids of attacking alien units
         //alien army attack earth army
         alien_army.alien_attack(as, ad1, ad2, am, as_attacked, ad_attacked, am_attacked, ts);
-        //check for a winner
-        if (ts > 40) {
+        //check for winner if limit is reached or after 40 time steps
+        if (ts == limit)
+            earth_status = status(endgame,true);
+        else if (ts >= 40) {
+            earth_status = status(endgame,false);
+        }
+        //output of interactive mode
+        if (interactive == 2) {
+            print(ts, es, et, eg, as, ad1, ad2, am, es_attacked, et_attacked, eg_attacked, as_attacked, ad_attacked, am_attacked);
         }
         //increment the time step
         ts++;
+    }
+    
+    //creating output file
+    SaveToFile("output.txt", earth_status);
+
+    //rest of the output of silent mode
+    if (interactive == 1) {
+        cout << "Simulation ends, Output file is created" << endl;
+    }
+}
+
+string Game::status(bool& endgame, bool limit_reached) //checks if earth won or lost
+{
+    int total_alien = alien_army.getASlist().getCount() + alien_army.getADlist().getCount() + alien_army.getAMlist().getCount();
+    int total_earth = earth_army.getESlist().getCount() + earth_army.getETlist().getCount() + earth_army.getEGlist().getCount();
+    if (limit_reached) {
+        endgame = true; //if limit of time steps is reached end the game regardless of the numbers of units left
+        if (total_alien < total_earth)
+            return "Win";
+        else if (total_alien > total_earth)
+            return "Loss";
+        else
+            return "Draw";
+    }
+    else {
+        if (total_alien == 0 && total_earth == 0) {
+            endgame = true;
+            return "Draw";
+        }
+        else if (total_alien == 0) {
+            endgame = true;
+            return "Win";
+        }
+        else if (total_earth == 0) {
+            endgame = true;
+            return "Loss";
+        }
+        else {
+            endgame = false;
+            return " ";
+        }
     }
 }
