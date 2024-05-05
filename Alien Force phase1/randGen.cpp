@@ -29,7 +29,6 @@ unit* randGen::CreateUnit(int timestep,int B,int type)
 			Unit = new EarthGunnery(timestep, health, power, cap, TheGame);
 		}
 		Unit->setID(EarthCounter);
-		Unit->setTimeJoined(timestep);
 		EarthCounter++;
 	}
 	else {
@@ -46,7 +45,6 @@ unit* randGen::CreateUnit(int timestep,int B,int type)
 			Unit = new AlienDrone(timestep, health, power, cap, TheGame);
 		}
 		Unit->setID(AlienCounter);
-		Unit->setTimeJoined(timestep);
 		AlienCounter++;
 	}
 	return Unit;

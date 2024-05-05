@@ -1,6 +1,7 @@
 #include "Game.h"
 #include "string"
 #include <iostream>
+#include <iomanip>
 using namespace std;
 
 Game::Game()
@@ -139,18 +140,25 @@ void Game::LoadFromFile(string filename)
 
 void Game::SaveToFile(string filename,string result)
 {
+    int width=10;
+    int rightmargin = 3;
     //open file in write mode
     ofstream OutputFile(filename);
     //write headers for the columns
-    OutputFile << "Td  ID  Tj  Df  Dd  Db" << endl;
+    OutputFile << setw(rightmargin)<<"Td";
+    OutputFile << setw(width) << "ID";
+    OutputFile << setw(width) << "Tj";
+    OutputFile << setw(width) << "Df";
+    OutputFile << setw(width) << "Dd";
+    OutputFile << setw(width) << "Db" << endl;
     //unit pointer to dequeue
     unit* dead = nullptr;
     //variables to calculate averages need in file
-    int AVGEDf=0, AVGEDd=0, AVGEDb=0;
-    int AVGADf=0, AVGADd=0, AVGADb=0;
+    float AVGEDf=0, AVGEDd=0, AVGEDb=0;
+    float AVGADf=0, AVGADd=0, AVGADb=0;
     //loop on killed list, calculate sums needed for averages and write needed information in file
     while (KilledList.dequeue(dead)) {
-        int Df, Dd, Db;
+        float Df, Dd, Db;
         Df = dead->getTimeAttack() - dead->getTimeJoined();
         Dd = dead->getTimeDead() - dead->getTimeAttack();
         Db = Df + Dd;
@@ -162,19 +170,19 @@ void Game::SaveToFile(string filename,string result)
         }
         else {
             AVGADf += Df;
-            AVGADf += Dd;
-            AVGADf += Db;
+            AVGADd += Dd;
+            AVGADb += Db;
         }
         //write to file in the correct format
-        OutputFile << dead->getTimeDead() << "  ";
-        OutputFile << dead->getID() << "  ";
-        OutputFile << dead->getTimeJoined() << "  ";
-        OutputFile << Df << "  ";
-        OutputFile << Dd << "  ";
-        OutputFile << Db <<endl;
+        OutputFile <<setw(rightmargin)<<dead->getTimeDead();
+        OutputFile <<setw(width)<<dead->getID();
+        OutputFile <<setw(width)<<dead->getTimeJoined();
+        OutputFile <<setw(width)<<Df;
+        OutputFile <<setw(width) <<Dd;
+        OutputFile <<setw(width) <<Db <<endl;
     }
     //calculate total destructed earth units
-    int totalEarthDestructed=ESK+ETK+EGK;
+    float totalEarthDestructed=ESK+ETK+EGK;
     //calculate averages for earth army
     if (totalEarthDestructed != 0) {
         AVGEDf /= totalEarthDestructed;
@@ -187,12 +195,12 @@ void Game::SaveToFile(string filename,string result)
         AVGEDb = 0;
     }
     //total units of each type 
-    int totalES, totalET, totalEG;
+    float totalES, totalET, totalEG;
     totalES = ESK + earth_army.getESlist().getCount();
     totalET = ETK + earth_army.getETlist().getCount();
     totalEG = EGK + earth_army.getEGlist().getCount();
     //total of entire earth army
-    int totalEarthUnits = totalES + totalET + totalEG;
+    float totalEarthUnits = totalES + totalET + totalEG;
     //output of statistics
     OutputFile << endl;
     OutputFile << "Battle result: " << result << endl;
@@ -238,7 +246,7 @@ void Game::SaveToFile(string filename,string result)
     OutputFile << endl;
 
     //calculate total destructed alien units
-    int totalAlienDestructed = ASK + ADK + AMK;
+    float totalAlienDestructed = ASK + ADK + AMK;
     //calculate averages for alien army
     if (totalAlienDestructed != 0) {
         AVGADf /= totalAlienDestructed;
@@ -251,12 +259,12 @@ void Game::SaveToFile(string filename,string result)
         AVGADb = 0;
     }
     //total units of each type 
-    int totalAS, totalAD, totalAM;
+    float totalAS, totalAD, totalAM;
     totalAS = ASK + alien_army.getASlist().getCount();
     totalAD = ADK + alien_army.getADlist().getCount();
     totalAM = AMK + alien_army.getAMlist().getCount();
     //total of entire alien army
-    int totalAlienUnits = totalAS + totalAD + totalAM;
+    float totalAlienUnits = totalAS + totalAD + totalAM;
     //output of statistics
     OutputFile << "Alien army statistics" << endl;
     OutputFile << "Total alien soliders: " << totalAS << endl;
@@ -296,6 +304,11 @@ void Game::SaveToFile(string filename,string result)
         OutputFile << (AVGADd / AVGADb) * 100 << "%" << endl;
     else
         OutputFile << "0%" << endl;
+
+    OutputFile << totalEarthUnits << endl;
+    OutputFile << totalEarthDestructed << endl;
+    OutputFile << totalAlienUnits << endl;
+    OutputFile << totalAlienDestructed << endl;
 }
 
 bool Game::killed(unit* dead)
