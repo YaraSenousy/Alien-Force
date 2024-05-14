@@ -1,7 +1,8 @@
 #include "EarthArmy.h"
 #include "unit.h"
 
-void EarthArmy::addUnit(unit* u)
+void EarthArmy::addUnit(unit* u)//adds unit to its corresponding
+								//list accoring to its type
 {
 	if (u->getType() == "ES") {
 		ES.enqueue(static_cast<EarthSolider*>(u));

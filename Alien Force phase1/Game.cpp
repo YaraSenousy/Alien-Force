@@ -379,7 +379,7 @@ void Game::simulate()
     }
     
     bool endgame = false; //indicates when the game ends
-    string earth_status; //indicates who wins
+    string earth_status; //indicates whether earth wins or loses
     int ts = 1; //time step
     int interactive;
     cout << "Enter 1 for silent mode or 2 interactive mode" << endl;
@@ -407,7 +407,7 @@ void Game::simulate()
     }
 
     if (interactive != 1) {
-        //start war
+        //wait for enter from user to start war
         cin.get();
         cout << "Press Enter to start war..." << endl;
         cin.get();

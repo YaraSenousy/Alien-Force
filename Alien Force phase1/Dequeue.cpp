@@ -72,6 +72,9 @@ bool Dequeue::dequeue(AlienDrone*& frontDrone)
 	return true;
 }
 
+//dequeues from back
+//returns 0 if dequeue is empty
+//returns 1 otherwise and sets backDrone pointer to drone removed
 bool Dequeue::dequeueBack(AlienDrone*& backDrone)
 {
 	if (isEmpty())
