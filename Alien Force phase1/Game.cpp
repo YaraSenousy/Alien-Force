@@ -304,6 +304,8 @@ void Game::SaveToFile(string filename,string result)
         OutputFile << (AVGADd / AVGADb) * 100 << "%" << endl;
     else
         OutputFile << "0%" << endl;
+
+    OutputFile.close();
 }
 
 bool Game::killed(unit* dead)
@@ -331,7 +333,29 @@ bool Game::killed(unit* dead)
 void Game::simulate()
 {
     srand((int)time(0));
-    LoadFromFile("input.txt");
+    int simMode;
+    cout << "Choose simulation bias: " << endl;
+    cout << "1.Weak earth & weak aliens" << endl;
+    cout << "2.Weak earth & moderate aliens" << endl;
+    cout << "3.Weak earth & strong aliens" << endl;
+    cout << "4.Strong earth & weak aliens" << endl;
+    cout << "5.Strong earth & moderate aiens" << endl;
+    cout << "6.Strong earth & strong aliens" << endl;
+    cout << endl;
+    cin >> simMode;
+    while (simMode < 1 || simMode>6) {
+        cout << "Invalid. Try again"<<endl;
+        cin >> simMode;
+    }
+    switch (simMode) {
+        case 1 :LoadFromFile("WeakEarth_WeakAliens.txt");
+        case 2: LoadFromFile("WeakEarth_ModerateAliens.txt");
+        case 3: LoadFromFile("WeakEarth_StrongAliens.txt");
+        case 4: LoadFromFile("StrongEarth_WeakAliens.txt");
+        case 5: LoadFromFile("StrongEarth_ModerateAliens.txt");
+        default: LoadFromFile("StrongEarth_StrongAliens.txt");
+    }
+    //LoadFromFile("input.txt");
     bool endgame = false; //indicates when the game ends
     string earth_status; //indicates who wins
     int ts = 1; //time step
