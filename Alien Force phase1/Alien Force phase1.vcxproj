@@ -168,7 +168,6 @@
     <ClCompile Include="Dequeue.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="input.txt" />
     <Text Include="StrongEarth_ModerateAliens.txt" />
     <Text Include="StrongEarth_ModerateAliens_output.txt" />
     <Text Include="StrongEarth_StrongAliens.txt" />
