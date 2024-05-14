@@ -90,10 +90,10 @@ bool EarthGunnery::attack(LinkedQueue<unit*>& attacked,int ts)
 	//return the alive AD to their lists 
 	AlienDrone* ad;
 	while (!temp_AD.isEmpty()) {
+		if (temp_AD.dequeueBack(ad)) //dequeueBack first in case there is an odd number of drones attacked it should return to the front
+			AD.enqueueFront(ad);
 		if (temp_AD.dequeue(ad))
 			AD.enqueue(ad);
-		if (temp_AD.dequeueBack(ad))
-			AD.enqueueFront(ad);
 	}
 	return true;
 }

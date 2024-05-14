@@ -19,7 +19,7 @@ bool EarthTank::attack(LinkedQueue<unit*>& attacked, int ts)
 	//if the lists to attack are empty return false
 	if (attackAS && AM.isEmpty() && AS.isEmpty())
 		return false;
-	else if (!attackAS && AS.isEmpty())
+	else if (!attackAS && AM.isEmpty())
 		return false;
 
 	//how many AM and AS exists

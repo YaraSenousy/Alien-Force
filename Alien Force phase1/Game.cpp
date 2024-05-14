@@ -347,15 +347,37 @@ void Game::simulate()
         cout << "Invalid. Try again"<<endl;
         cin >> simMode;
     }
+    string output_file;
     switch (simMode) {
-        case 1 :LoadFromFile("WeakEarth_WeakAliens.txt");
-        case 2: LoadFromFile("WeakEarth_ModerateAliens.txt");
-        case 3: LoadFromFile("WeakEarth_StrongAliens.txt");
-        case 4: LoadFromFile("StrongEarth_WeakAliens.txt");
-        case 5: LoadFromFile("StrongEarth_ModerateAliens.txt");
-        default: LoadFromFile("StrongEarth_StrongAliens.txt");
+    case 1: {
+        LoadFromFile("WeakEarth_WeakAliens.txt");
+        output_file = "WeakEarth_WeakAliens_output.txt";
+        break;
     }
-    //LoadFromFile("input.txt");
+    case 2: {
+        LoadFromFile("WeakEarth_ModerateAliens.txt");
+        output_file = "WeakEarth_ModerateAliens_output.txt";
+        break;
+    }
+    case 3: {
+        LoadFromFile("WeakEarth_StrongAliens.txt");
+        output_file = "WeakEarth_StrongAliens_output.txt";
+        break;
+    }
+    case 4: {
+        LoadFromFile("StrongEarth_WeakAliens.txt");
+        output_file = "StrongEarth_WeakAliens_output.txt";
+        break;
+    }
+    case 5: {
+        LoadFromFile("StrongEarth_ModerateAliens.txt");
+        output_file = "StrongEarth_ModerateAliens_output.txt";
+        break;
+    }
+    default: LoadFromFile("StrongEarth_StrongAliens.txt");
+        output_file = "StrongEarth_StrongAliens_output.txt";
+    }
+    
     bool endgame = false; //indicates when the game ends
     string earth_status; //indicates who wins
     int ts = 1; //time step
@@ -384,6 +406,12 @@ void Game::simulate()
         cout << "Simulation Starts..." << endl;
     }
 
+    if (interactive != 1) {
+        //start war
+        cin.get();
+        cout << "Press Enter to start war..." << endl;
+        cin.get();
+    }
     while (!endgame) {
         //generate earth and army unit
         RandGen.AssignGenerated(ts);
@@ -413,7 +441,7 @@ void Game::simulate()
     }
     
     //creating output file
-    SaveToFile("output.txt", earth_status);
+    SaveToFile(output_file, earth_status);
 
     //rest of the output of silent mode
     if (interactive == 1) {
