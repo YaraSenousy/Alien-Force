@@ -119,18 +119,19 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="testcode.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="input.txt" />
-    <Text Include="output.txt" />
     <Text Include="WeakEarth_WeakAliens.txt" />
     <Text Include="WeakEarth_ModerateAliens.txt" />
     <Text Include="WeakEarth_StrongAliens.txt" />
     <Text Include="StrongEarth_WeakAliens.txt" />
     <Text Include="StrongEarth_ModerateAliens.txt" />
     <Text Include="StrongEarth_StrongAliens.txt" />
+    <Text Include="StrongEarth_ModerateAliens_output.txt" />
+    <Text Include="StrongEarth_StrongAliens_output.txt" />
+    <Text Include="StrongEarth_WeakAliens_output.txt" />
+    <Text Include="WeakEarth_ModerateAliens_output.txt" />
+    <Text Include="WeakEarth_StrongAliens_output.txt" />
+    <Text Include="WeakEarth_WeakAliens_output.txt" />
   </ItemGroup>
 </Project>

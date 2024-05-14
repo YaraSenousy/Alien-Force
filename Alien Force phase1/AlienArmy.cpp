@@ -1,8 +1,8 @@
 #include "AlienArmy.h"
 #include "unit.h"
 
-void AlienArmy::addUnit(unit* u) {
-
+void AlienArmy::addUnit(unit* u) {//adds unit to its corresponding
+								 //list accoring to its type
 	if (u->getType() == "AS") {
 		AS.enqueue(static_cast<AlienSolider*> (u));
 	}

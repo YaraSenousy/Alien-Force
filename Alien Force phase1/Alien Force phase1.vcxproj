@@ -161,7 +161,6 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MonsterArray.cpp" />
     <ClCompile Include="randGen.cpp" />
-    <ClCompile Include="testcode.cpp" />
     <ClCompile Include="unit.cpp" />
   </ItemGroup>
   <ItemGroup>
