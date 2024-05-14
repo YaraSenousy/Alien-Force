@@ -206,10 +206,10 @@ void Game::SaveToFile(string filename,string result)
     OutputFile << "Battle result: " << result << endl;
     OutputFile << endl;
     OutputFile << "Earth army statistics"<<endl;
-    OutputFile << "Total earth soliders: " << totalES << endl;
+    OutputFile << "Total earth soldiers: " << totalES << endl;
     OutputFile << "Total earth tanks: " << totalET << endl;
     OutputFile << "Total earth gunnery: " << totalEG << endl;
-    OutputFile << "Percentage of destructed earth soliders relative to total soliders: ";
+    OutputFile << "Percentage of destructed earth soldiers relative to total soldiers: ";
     if (totalES != 0) {
         OutputFile << (ESK / totalES) * 100 << "%" << endl;
     }
@@ -267,10 +267,10 @@ void Game::SaveToFile(string filename,string result)
     float totalAlienUnits = totalAS + totalAD + totalAM;
     //output of statistics
     OutputFile << "Alien army statistics" << endl;
-    OutputFile << "Total alien soliders: " << totalAS << endl;
+    OutputFile << "Total alien soldiers: " << totalAS << endl;
     OutputFile << "Total alien drones: " << totalAD << endl;
     OutputFile << "Total alien monsters: " << totalAM << endl;
-    OutputFile << "Percentage of destructed alien soliders relative to total soliders: ";
+    OutputFile << "Percentage of destructed alien soldiers relative to total soldiers: ";
     if (totalAS != 0) {
         OutputFile << (ASK / totalAS) * 100 << "%" << endl;
     }
@@ -339,7 +339,7 @@ void Game::simulate()
     cout << "2.Weak earth & moderate aliens" << endl;
     cout << "3.Weak earth & strong aliens" << endl;
     cout << "4.Strong earth & weak aliens" << endl;
-    cout << "5.Strong earth & moderate aiens" << endl;
+    cout << "5.Strong earth & moderate aliens" << endl;
     cout << "6.Strong earth & strong aliens" << endl;
     cout << endl;
     cin >> simMode;
